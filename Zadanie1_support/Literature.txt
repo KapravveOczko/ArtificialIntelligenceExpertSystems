@@ -1,0 +1,3 @@
+Stuart Russell, Peter Norvig. Sztuczna inteligencja. Nowe spojrzenie. Wydanie IV. Helion S.A.; Gliwice, 2022.
+Rozdział 3. Rozwiązywanie problemów za pomocą wyszukiwania (str. 83-136).
+https://helion.pl/pobierz-fragment/szti41/pdf
