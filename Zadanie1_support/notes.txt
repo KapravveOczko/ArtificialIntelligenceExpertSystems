@@ -1,0 +1,666 @@
+Notatki #1: Sztuczna inteligencja i systemy ekspertowe.
+
+Metody heurystyczne -> jedna z klasycznych metod
+
+Metody "na ślepo" -> 
+
+Celem tego przedmiotu jest także zapoznanie z sztuczną siecią neuronową.
+
+Do wykonania są dwa zadania i w każdym z tych zadań trzeba wykonać dwa kroki: 
+
++ Zadanie programistyczne - czyli napisać program zgodnie z instrukcją. 
++ Trzeba będzie go uruchomić wielokrotnie - tak aby przetestować na różnych zestawach danych testowych. To jest ta część badawcza.
++ Część badawczą trzeba udokumentować w sprawozdaniu. Musi być to zgodne w wymaganiami.
+
+Program ma napisany być wraz z interfejsem konsolowym - w tym przypadku powinno być możliwe uruchomienie danego programu z linii poleceń wraz z argumentami podanymi przy uruchomieniu tego programu.
+
+Program ma też otwierać pliki o określonych formatach, opisanych w instrukcji, w których znajdują się dane wejściowe itp.
+Natomiast w przypadku wyników - trzeba będzie dostosować program do zapisu danych do pliku - jako że taki program musi być wsadowy. Skrypty, które będą odpowiadać za wielokrotne uruchomienie są już napisane i znajdują się na stronie przedmiotu. Natomiast w związku z tym skrypty, programy muszą spełniać szereg wymagań.
+
+Sprawozdanie składa się z dwóch części: 
+
++ Cel : jedno dwa zdania o tym czego dotyczyło ćwiczenie - informacja na zasadzie co jest celem zadania - jakie algorymty użyto - jakie jest zastosowanie programu.
++ Wyniki : mają one być zgodnie zaprezentowane zgodnie z opisem - takowy opis znajduje się w wytycznych. Zasadniczo mają one być reprezentowane w postaci wykresu, natomiast w przypadku zadania 2. mogą to być tabele - wszystko jest w wymaganiach. 
+
+-> Nie ma potrzeby pisać żadnych analiz, struktur klas itp. - jeżeli będzie potrzeba dyskusji wyników, to będzie to miało miejsce w ramach odpowiedzi.
+
+Dokument może być stworzony w dowolnym edytorze tekstu: Word, LibreOffice, LaTeX itp. -> Natomiast końcowo musi ono być w formacie PDF - wymagana jest wersja cyfrowa jak i papierowa - wydruk ma być dwustronny - w tym przypadku stron jest więcej więc muszą one być zszyte - bez zszycia sprawozdanie nie jest przyjmowane do oceny.
+
+Nazwiska autorów muszą być umieszczone w kolejności alfabetycznej - oczywiście przy podpisaniu sprawozdania.
+
+---> Zadanie pierwsze: Piętnastka
+
+Cel: Rozwiązanie układanki, składającej się z ramki i 15 bloczków - gdzie mogłoby się zmieścić 16 - i te bloczki można przesuwać, tak aby uzyskać jakiś obrazek. Takie rozwiązanie trzeba będzie uzyskać na kilka sposobów.
+
+---> Zadanie drugie: Sztuczne sieci neuronowe 
+
+Cel: Trzeba będzie napisać sieć neuronowa, która dokonywać będzie regresji nieliniowej.
+
+Z powodu, że technik sztucznej inteligencji jest wiele więcej to można w miejsce tego zadania zaproponować swoje własne zadanie, np. rozpoznawanie mowy naturalnej, sieci splotowe itp. jednak truność tego zadania musi być przynajmniej taka sama i wymagana jest akceptacja prowadzącego - oczywiście za wczasu a nie na znajęciach z tego zadania.
+
+Terminy oddawania zadań: 
+
++ Zadanie 1: Zajęcia 10 -> 11 maja 2023 (Nie dać się zwieść, że jest tyle czasu - wynika to z faktu, że jest to trudne zadanie - trzeba mieć czas na zdebuggowanie kodu i znalezienie ewentualnych błędów - a nawet jak będzie to trzeba go wiele razy uruchomić - nawet ponad 7 tyś. razy - co może zająć dużo czasu - w zależności od implementacji).
++ Zadanie 2: Zajęcia 14 -> 15 czerwca 2023
+
+Maksymalnie dopuszczone są 2 osobowe zespoły - no najwyżej że ktoś się uprze na zespół jednoosobowy. Każda osoba z zespołu jest odpowiedzialna za całość - nawet jeżeli nie jest bezpośrednim autorem kodu. 
+
+Oddanie zadania do oceny oznacza, że trzeba umieścić zadanie na WIKAMPIE - każda osoba z zespołu dwuosobowego - w związku w tym, że czasami może pojawić się komisja akrydetacyjna. Rozwiązanie jest dokładnie opisane - dokładna specyfikacja, której trzeba się trzymać: typowo archiwum ZIP ze sprawozdaniem w postaci PDF, struktura katalogowa i tak dalej - jeżeli będzie źle to klasycznie opuszczony jest termin. 
+
+Sprawozdanie trzeba wydrukować - przynosi się tylko jeden egzemplarz - na początek sprawdzane są sprawozdania - a potem odpowiedź - a dokładnie kluczowych ich fragmentów.
+
+W przypadku nieprawidłowości archiwum prowadzący zastrzega sobie prawo do obniżenia oceny z danego zadania o pół - co nie zawsze musi być egzekwowane.
+
+Może się zdarzyć, że rozwiązanie nie będzie idealne - jeżeli są do niedociągnięcia małe np. wykonywanie niepotrzebnych kroków itp. to wtedy ocena jest obniżona. W przypadku niedociągnięć istotnych - takie rozwiązanie jest odrzucane i takie zadanie trzeba poprawić - takim przypadkiem mogą być błędy (np. błędne wyniki - wtedy traktowane jest to jako niedotrzymanie terminu - to samo może mieć miejsce gdy po prostu zadanie nie jest zrobione - w przypadku gdy jest to sytuacja jednorazowa to zadanie można ponownie oddać w sesji - taki termin będzie ustalony na ostatnich zajęciach w semestrze - w tym terminie nie można poprawiać więcej niż jednego zadania) albo brak zaimplementowania wymagań zadania.
+
+Oddanie zadania w terminie dodatkowym powoduje obniżenie oceny z zadania o jeden: 
+
+Zamiast: 
+
+5 -> 4
+4.5 -> 3.5
+4 -> 3
+3.5 -> 3
+3 -> 3
+
+W przypadku niedotrzymania terminu przez sytuację rodzinną, jakieś wyjazdy, szkolenia itp. to trzeba to ustalić z prowadzącym. Z sytuacji trzeba się rozliczyć - np. poprzez okazanie zwolnienia lekarskiego - w przypadku innych sytuacjach trzeba po prostu powiadomić - tylko zawczasu a nie po fakcie dokonanym.
+
+Nowość w stosunku do KAD-a: Jest to przedmiot specjalizacyjny - czyli dostępny był wcześniej na specjalizacji - a teraz jest dostępny przed wyborem specjalizacji - w tym przypadku zadanie 1. jest obowiązkowe - natomaist w przypadku 2. jest ono opcjonalne - zakładając, że jest zespół oddał tylko jedno zadanie, to ocena nie jest średnią arytmetyczną - w przypadku wykonania obu zadań jest oceną wyższą z obu - natomiast w przypadku braku wykonania zadania 2. to ocena będzie przeskalowana wg oceny z terminu poprawkowego.
+
+Plagiaty są karane niezaliczeniem przedmiotu - to dotyczy sciągniecia od kolegi, z Internetu itp. Wówczas na taki przedmiot trzeba się zapisać ponownie w kolejnym roku. 
+
+Jednak nie oznacza to, że zespoły nie mogą się komunikować - mogą jak najbardziej, nawet mogą się dzielić wynikami - jednak raczej to służy to w celu sprawdzenia poprawności zadania, a nie jego całkowitego rozwiązania.
+
+Zajęcia są stacjonarnie co tydzień, o ile się nic nie zmieni z sytuacją pandemiczną - obecność poza terminami zadań nie jest wymagana - można na zajęcia nie przychodzić (terminów oddawania zadań dotyczą te sytuacje rodzinne itp.).
+
+Dodatkowo, tydzień wcześniej, czyli 4 maja 2023 to trzeba się zjawić, jeżeli interesuje się wykonaniem zadania 2. a w szczególności gdy chce zaproponować swoje zadanie - do terminu 11 maja 2023 trzeba też uzyskać akceptację pomysłu do zadania 2. - odpowiedzi jednak zaczną się tydzień później.
+
+Na zajęciach kolejnych tj. po 2 marca 2023 prowadzone na zajęciach będzie wprowadzenie teoretyczne do zadania 1. - oczywiście można to znaleźć na Internecie, na różnych blogach - natomiast nie muszą być to informacje prawidłowe - w związku w tym, aby uniknąć takich błędów - można zjawić się na zajęciach i dowiedzieć dokładnie o co w tym zadaniu 1. chodzi. W pewnym momencie, tj. za jakieś 3 - 4 tygodnie od tego momentu odbędą się zajęcia konsultacyjne - i można sobie skonsultować kod. 
+
+Jeżeli zadanie się zrobi wcześniej - np. na konieć kwietnia - to można podejść do odpowiedzi wcześniej - jednak nadal jest to jeden termin tylko pod inną datą - wówczas jak jest to źle zrobione to wpada się w wir popraw w sesji.
+
+===> Wprowadzenie do sztucznej inteligencji: 
+
+Info do zadania 1.: Sztuczna inteligencja - Nowe spojrzenie - wydanie 4. - Polskie wydanie podzielone jest na 2 tomy - można sobie to kupić jeżeli ktoś się interesuje sztuczna inteligencją - W rozdziale 3. tego podręcznika jest opisane wszystko do tego zadania 1. - można sobie go za darmo ściągnąć z oficyn Helliona - jest podlinkowany na WIKAMPIE przez prowadzącego. Zawiera to sporo informacji - nawet nieco więcej niż potrzeba do zadania 1. jednak na zajęciach będą poruszone aspekty programistyczne, których oczywiście w tej książce nie ma. 
+
+===> Wprowadzenie: 
+
+Pojęcie sztucznej inteligencji pojawiło się już w 1955 roku. W roku 1956, w Darthmouth College odbyła się konferencja, która na celu miała popchnięcie do przodu dziedzin zahaczających o sztuczną inteligencję - i jakiś ziomek pisząc o grant ukuł to pojęcie i pozostało to normą. 
+
+* Herbert Simon i Allan Newell 
+* Hipoteza fizycznego systemu symboli - myślenie to przetwarzanie odpowiednio skomplikowanych symboli.
+* Przeszukiwanie heurystyczne - stanowi podstawę przeszkuiwania systemu stanów (?) 
+
+Logika klasyczna - tj. logika Boolowska. 
+Ale jest więcej logik, które są rozwijane po dziś dzień - np. logiki trójwartościowej - np. takiej utworzonej przez Łukasiewicza - wówczas takie stany mają wartości prawda / fałsz / nie wiadomo. 
+
+Logiki modalne to takie logiki gdzie wprowadzono takie słowa jak możliwe że, prawdopodobnie itp.
+
+Logika rozmyta -> doczytać
+
+Użycie innych logik pozwoliło na rozwiązanie większej liczby problemów, natomiast nie rozwiązało to wszystkich problemów.
+
+W przypadku niektórych problemów logika nie jest wystarczająca i w tym celu wprowadzono do tej dziedziny elementy rachunku prawdopodobieństwa. Jednak ponownie nie jest to rozwiązanie na wszystkie problemy - działa to dobrze w przypadku problemów, które polegają algorytmizacji - natomiast w przypadku pozostałych problemów nie jest to takie proste.
+
+W sytuacjach rozpoznawania np. twarzy podejście symboliczne nie dawało rady - w tym przypadku rozwijano inne podejście w postaci sieci neuronowych - w tym przypadku przetwarzanie następuje na poziomie sygnału, czyli podejściu subsymbolicznym. 
+
+Metaheurystyki, sztuczne systemy immunologiczne, systemy mrówkowe (?) - przy tym podejściu można rozwiązać problemy, których nie da się rozwiązać w sposób znakowy - co opiera się na dostosowaniu sieci neuronowej do danego problemu - z zewnątrz nie wiadomo za co odpowiadają konkretne neurony - ale w niektórych przypadkach działają lepiej jak ludzie.
+
+System ekspertowy - jest to system, który miał mieć wiedzę na poziomie eksperta z danej dziedziny (jak np. lekarz) i na podstawie wprowadzonych danych powinien być w stanie zdiagnozować pacjenta - w sensie na jaką chorobę choruje itp.
+
+Sztuczna inteligencja to nie jest w gruncie rzeczy system ekspertowy - a raczej jej kwintesencją jest sztuczny agent - czyli ktoś to będzie wchodził w kontakt z otoczeniem w celu osiągnięcia własnych celów. 
+
+Np. asystent porównujący miejsca na majóweczkę - może to się opierać na porównywaniu miejsc - pisaniu maili w celu poznania szczegółów itd. na podstawie czego jest w stanie dokonać decyzji. 
+
+Rozwój sztucznej inteligencji znacznie przyspieszył w latach 2005 - 2010 z powodu zwiększenia możliwości obliczeniowych. W większości bazuje to na rozwiązaniach "starych" np. z lat 80. pokroju sieci splotowych - powstanie takich mocy obliczeniowych pozwoliło na weryfikację działania określonych rozwiązań i ewentualnych jej korekty. 
+
+Podsumowanie: 
+
+Piersze zadanie polega na przeszukiwanie przestrzeni stanów - natomiast zadanie 2. polegać będzie na zastosowaniu tego podejścia subsymbolicznego. 
+
+Rozwiązanie problemu, a dokłądnie skali: 
+
+Układów takiej układanki jest 16! co wynosi miniej więcej 2,09 * 10 ^ 12 (ponad 20 bilionów układów). W roku 1989 dwóch amerykańskich naukowców wykazało, że dane są dwa typy układów - parzyste i nieparzyste - w tym przypadku można przejść między układem parzystym a innym układem parzystym w skończonej liczbie kroków i to samo dotyczy nieparszystych - jednak nie jest możliwe przejście między układami. 
+
+Głębokość układu to minimalna liczba kroków, które trzeba wykonać w celu uzyskania danego układu. 
+Na głębokości 1 są 2 układy - na głębokości 2 są 4 układy - na głębokości 3 jest 8 układów itp. 
+
+W przypadku dostania najbardziej niekorzystnego układu, w celu uzyskania konkretnego układu można wykonać maksymalnie 80 - najwięcej układów jest na głębokości 53 i jest to kilka miliadrów układów 
+
+
+Laboratorium 2.: Szutczna inteligencja i systemy ekspertowe.
+
+Główny temat: Przeszukiwanie przestrzeni stanów, w celu rozwiązania układanki (tj. piętnastki)
+
+Co to wg. jest przestrzeń stanów? : W lekturze jest napisane, iż jest to zbiór wszystkich stanów - choć nie jest do końca poprawna definicja. 
+
+Przestrzeń stanów -> jest to tak naprawdę połączenie trzech elemetnów, składających się na definicję: 
+
+1. Zbiór stanów - zbiór wszystkich możliwych konfiguracji danego systemu (piętnastka może być ułożona na wiele sposobów - każdy z takich sposobów to odrębny stan)
+
+2. Zbiór operatorów (powszechnie zbiór akcji) - jest to zbiór operacji, które mogą być wykonane na danym zbiorze stanów (w przypadku układanki jest to przesuwanie pola pustego)
+
+3. Model przejścia - jest to odwzorowanie przyporządkowujące poszczególnym opeartorom, dokładanie parom (stan, operator) pewien stan wynikowy.
+
+* Podejście "naiwne" -> przesuwanie fizycznych bloczków, jednak może to znacznie utrudnić rozwiązanie problemu
+
+* Podjeście bardziej praktyczne -> przesuwanie pola pustego - w stosunku do niego dopasowują się bloczki fizyczne.
+
+Podział stanów: 
+
+* Stany parzyste
+* Stany nieparzyste
+
+Możliwe jest przejście między układami w ramach danej kategorii stanów - jednak nie jest możliwe przejście między stanem parzystym a nieparzystym.
+
+Pole puste "wolne" przesuwane będzie w górę (U), w lewo (L), w prawo (R) i w dół (D).
+
+Problem -> ponownie składa się z kilku elementów, takich jak:
+
+* Przestrzeń stanów 
+* Stan początkowy (jeden z pośród przestrzeni stanów)
+* Stan docelowy / Stany docelowe (ponownie - należą one do przestrzeni stanów) [przypadek z mnogością stanów docelowych może występować np. w szachach - tam mat na przeciwniku może być wykonany na wiele sposobów]
+* Jednostkowe koszty przejść - przyporządkowanie, które przyporządkowuje każdemu operatorowi ... (to trzeba doczytać) - w przypadku tego problemu, jakim jest układanka - koszty dla ruchu w każdym kierunku są takie same - choć to zależy od specyfiki problemu - jak np. ustalenie drogi między Łodzią a Warszawą (uwzględniając korki, długość trasy, czas przejazdu itp.). Działa to podobnie jak model przejścia, jednak w tym przypadku parze (stan, operator) przyporządkowujemy koszt przejścia.
+
+* Ścieżka -> ciąg stanów dopuszczalnych, powiązanych opeartorami
+
+Koszt ścieżki -> suma jednostkowych kosztów przejść wzdłuż całej ścieżki
+
+Rozwiązanie -> jest to ciąg operatorów, akcji, które trzeba wykonać, aby przejść ze stanu początkowego do stanu końcowego. Samo rozwiązanie generuje pewną ścieżkę - z powodu korzystania z operatorów otrzymujemy ciąg stanów.
+
+Rozwiązania optymalne -> jest to rozwiązanie o najmniejszym koszcie ścieżki, spośród wszystkich rozwiązań - nie musi być ono jednak unikalne - może być ich kilka - jednak może być ich wiele. Przy wyższym koszcie ścieżki takie rozwiązanie nie jest optymalne (co jest oczywiste).
+
+& W jaki sposób reprezentować przestrzeń stanów ? :
+
+Graf -> jest to struktura matemtaczyna składająca się z dwóch elementów
+* Zbiór wierzchołków (V)
+* Zbiór krawędzi (E)
+
+Graf jest szkicowany za pomocą kółek - oznaczających wierzchołki i kresek - oznaczających krawędzi.
+
+===> Podział grafów:
+
+Graf nieskierowany -> graf gdzie krawędzie nie mają nadanych zwrotów - co oznacza, że taką krawędzią "można podróżować w obie strony"
+
+Graf skierowany -> taki graf gdzie krawędzie mają nadany pewien kierunek - co oznacza, że takimi krawędziami można podróżować tylko w danym kierunku, zgodnym ze zwrotem krawędzi.
+
+Grafy ektykietowane -> każdemu wierzchołkowi, jak i krawędzi może być przyporządkowana pewna etykieta - w szczególności obu na raz.
+
+W przypadku piętnastki będziemy korzystać z grafu skierowanego etykietowanego - krawędzie oznaczać będą operatory, natomiast wierzchołkami będą stany - krawędzie są skierowane zgodnie z działaniem danego operatora.
+
+* Reprezentacja grafu:
+
+---> Reprezentacje "jawne" : pełna informacja o wszystkich wierzchołkach i krawędziach jest przechowywana w pamięci - w przypadku naszej układanki żadna z poniższych reprezentacji nie jest przydatna.
+
+-> Notacja matematyczna (która w tym przypadku byłaby strasznie nieefektywna) - problem z wydajnością pojawia się w sytuacji przeszukiwania wszystkich par wierzchołków i wyciągnąć z nich pary z sąsiadami - jednak oznacza to przejrzenie całej tablicy / listy itp.
+
+-> Macierz sąsiedztwa - dana jest macierz, gdzie każdemu wierszowi odpowiada wierzchołek i każdej kolumnie odpowiada wierchołek - gdzie jeżeli na przecięciu wiersza i kolumny jest ustawiona konkretna wartość np. 1 lub True - to wówczas oznacza, że taka krawędź istnieje - wówczas należałoby jedynie przejżeć jeden wiersz - jednak charakteryzuje się to niską wydajnością obliczeniową (gdyż jest to reprezentacja w postaci macierzy kwadratowej - w postaci piętnastki posiadałaby 10 bilionów ^ 2 elementów). W przypadku grafów nieskierowanych taka macierz jest symetryczna.
+
+-> Lista sąsiedztwa - mamy listę i w każdej liście znajdują się referencje do wierzchołków z którymi dany wierzchołek jest połączony za pomocą krawędzi - przechowywana jest jedynie informacja o istniejących połączeniach - no najwyżej, że jest to graf pełny - jest to sytuacja rzadka.
+
+--- Reasumując: Aby przechować całą informację o układance wymagane by było prawie 80 terabajtów pamięci ---
+
+---> Postaci "niejawne" : jest to funkcja, która zwraca dla danego wierzchołka listę jego sąsiadów. W danym stanie wywołujemy tę funkcję i ona wygeneruje obecnych sąsiadów danego elementu w danym stanie. Jesteśmy w stanie uzyskać całą informację o grafie, ale jest ona generowane w locie - nie jest jawna - czyli dostępna w pamięci.
+
+Przestrzeń poszukiwań - odności się do przeszukiwania przestrzeni stanów.
+
+Przeszukiwanie grafu (ang. graph search)
+
+Przchodzenie grafu (ang. graph traversy)
+
+W przypadku przechodzenia grafu chcemy przejść do każdego wierzchołka - natomiast w przypadku przeszukiwania grafu docieramy do stanu docelowego - jednak w przypadku osiągnięcia go - przeszukiwanie się zatrzymuje - nawet jeżeli nie odnaleźliśmy wszystkich wierzchołków.
+
+===> Strategie przeszukiwania : 
+
+---> Niekompletne : są to algorytmy, które nie gwarantują znalezienia rozwiązania, nawet jeżeli takie istnieje - nie oznacza, że nigdy one nic nie znajdą - natomiast nie dają gwarancji, że coś dadzą.
+
+---> Kompletne : są to algorytmy, które gwarantują znalezienie rozwiązania, o ile ono istnieje. Przy znalezieniu rozwiązania przeszukiwanie się kończy - nawet jeżeli nie jest ono optymalne.
+
+	() Optymalne -> W przypadku algorytmów kompletnych optymalnych otrzymane rozwiązanie jest optymalne. W przypadku tych algorytmów otrzymane rozwiązanie zawsze będzie optymalne - może być ono jednym z wielu.
+	
+Rodzaje złożoności:
+
++ Pamięciowa : ilość potrzebnej pamięci w zależności od rozmiaru danych wejściowych.
+
++ Czasowa : dotyczy o liczbie operacji podstawowych / dominujących w zależności od rozmiaru danych wejściowych.
+
+Od pewnego momenu, przy zmniejszaniu złożoności czasowej, rosnąć będzie złożoność pamięiowa i na odwrót, a raczej pojawiać się będzie konieczność zwiększenia złożności pamięciowej.
+
+===> Strategie przeszukiwania : 
+
+---> Ślepe (ang. blind / uninformed / undirected / brute-force) zwane też nieukierunkowanymi : jest to przeszukiwanie zorganizowane, schematyczne - przeszukiwanie miejsce przy miejscu, aż nie uzyskamy tego co chcemy - one są nieukierunkowane z powodu tego samego przeszukiwania niezależnie od kierunku, w którym jest rozwiązanie.
+
+* Przeszukiwanie "wszerz" BFS (ang. breadth-first-search)
+
+* Przeszukiwanie "w głąb" DFS (ang. depth-first-search)
+
+* Przeszukiwanie "w głąb" z ograniczeniem (ang. depth-with-limit-search)
+
+* Przeszukiwanie "w głąb" z iteracyjnym ograniczeniem głębi IDS / IDDFS (ang. iterative-deepening-search)
+
+* UCS (ang. unicost-search)
+
+---> Heurystyczne (ang. heuristic / informed / directed) zwane też ukierunkowanymi. W tego typu strategiach, tego typu algortymy próbują ukierunkować proces przeszukiwania.
+
+* Przeszukiwanie A*
+
+* Przeszukiwanie IDA*
+
+* Przeszukiwanie wiązką (ang. beam-search) - odpowiada BFS - owi, lecz jest to strategia heurystyczna
+
+===> Omówienie BFS (ang. breadth-first-search):
+
+* W przypadku tego algortymu potrzebna będzie struktura danych (ang. open list) - lista stanów otwartych - w przyapdku poznania sąsiadów dla danego elementu i będą wprowadzane do listy stanów otwartych.
+
+* Jeżli algorytm operuje na liście stanów otwartych to nie działa taki algorytm najlepiej - bo niektóre stany będą odpytywane ponownie.
+
+* Lista stanów zamkniętych (ang. closed - listed / explored) - przechowywana jest tam informacja o tym czy dany stan był już przepytywany (a do tego charakteryzuje się szybszym przeszukiwaniem)
+
+===> Poprawy pseudokod:
+
+function bfs(G, s):
+	Q = queue()
+	T = set()
+	Q.enquqe(s)
+	while ~Q.isEmpty()
+		v = Q.dequeue()
+		if G.isGoal(v)
+			return SUCCESS
+		T.add(v)
+		for n in G.neighbours(v) and ~Q.has(n)
+			if ~T.has(n)
+				Q.enqueue(n)
+	return FAILURE
+
+Nie jest to jednak najbardziej optymalne rozwiązanie -> lepsze by było:
+
+function bfs(G, s):
+	Q = queue()
+	T = set()
+	Q.enquqe(s)
+	while ~Q.isEmpty()
+		v = Q.dequeue()
+		T.add(v)
+		for n in G.neighbours(v) and ~Q.has(n)
+			if G.isGoal(n)
+				return SUCCESS
+			if ~T.has(n)
+				Q.enqueue(n)
+	return FAILURE
+	
+Jest jeszcze gorzej - bo w sytuacji, w której stan początkowy jest stanem docelowym - to algorytm go nie wykryje - szczególnie gdy operatory nie działają w dwie strony.
+
+function bfs(G, s):
+	if G.isGoal(s)
+		return SUCCESS
+	Q = queue()
+	T = set()
+	Q.enquqe(s)
+	while ~Q.isEmpty()
+		v = Q.dequeue()
+		T.add(v)
+		for n in G.neighbours(v) and ~Q.has(n)
+			if G.isGoal(n)
+				return SUCCESS
+			if ~T.has(n)
+				Q.enqueue(n)
+	return FAILURE
+
+Przeszukiwanie wszerz - idziemy w dół warstwami - od strony lewej do strony prawej.
+
+Tablica mieszająca - w celu sprawdzenia czy dany element istnieje to musi być w pewnym miejscu danej kolekcji - jeżeli go tam nie ma to nie ma go w całej kolekcji - dzięki czemu otrzymujemy złożność stałą. Natomiast w drugim przypadku potrzebne jest zachowanie kolejności - wymaga to zastosowania, czy też zastąpienia listy stanów zamkniętych poprzez listę stanów osiągniętych (ang. reached-list / discovered-list) - która to jest implementowana za pomocą zbioru.
+
+Lista stanów osiągniętych = lista stanów otwartych + lista stanów zamkniętych (mniej więcej)
+
+function bfs(G, s):
+	if G.isGoal(s)
+		return SUCCESS
+	Q = queue()
+	U = set()		# Tu zbiór pełni nieco inną rolę
+	Q.enquqe(s)
+	U.add(s)
+	while ~Q.isEmpty()
+		v = Q.dequeue()
+		for n in G.neighbours(v)
+			if G.isGoal(n)
+				return SUCCESS
+			if ~U.has(n)
+				Q.enqueue(n)
+				U.add(n)
+	return FAILURE
+
+
+Istnieje jeszcze jedna możliwość optymalizacji : Polega na przeniesieniu warunku sprawdzenia warunku stanu docelowego do ostatniego warunku.
+
+
+function bfs(G, s):
+	if G.isGoal(s)
+		return SUCCESS
+	Q = queue()
+	U = set()		# Tu zbiór pełni nieco inną rolę
+	Q.enquqe(s)
+	U.add(s)
+	while ~Q.isEmpty()
+		v = Q.dequeue()
+		for n in G.neighbours(v)
+			if ~U.has(n)
+				if G.isGoal(n)
+					return SUCCESS
+				Q.enqueue(n)
+				U.add(n)
+	return FAILURE
+	
+	Laboratorium - Sztuczna inteligencja i systemy ekspertowe: 
+
+=> Omówienie algorytmu przeszukiwania "w głąb" - (ang. depth-first-search).
+
+Graf - musi być to graf skierowany, gdzie krawędzie są skierowane (do tego muszą być etykietowane operacjami - dokładnie operatorami) - jednak nie ma ich na wykresie, jako, że źle to wpływa na czytleność.
+
+Bazowa reprezentacja metody / algorytmu DFS jest jako funkcja rekurencyjna - nie ma z tego potrzeby przechowywania listy stanów otwartych. Jendak wymagana jest lista stanów zamkniętych - jednak w tym przypadku musi być ona globalna (musi być dostępna dla każdego wywołania funkcji).
+
+Pseudokod: 
+
+T = set()
+function dfs(G, v, T)
+	if G.isgoal(v)
+		return SUCCESS
+	T.add(v)
+	for n in G.neighbours(v)
+		if ~T.has(n)
+			if dfs(G, n, T) == SUCCESS
+				return SUCCESS
+	return FAILURE
+
+Wersje alternatywne algorytmu DFS (ang. depth-first-search): 
+
+* Wersja iteracyjna - IDFS (w przypadku tej implementacji potrzebne będzie przechowywanie listy stanów otwartych - jednak w tym przypadku nie będzie to kolejka - tylko stos).
+
+Psuedokod: 
+
+function dfs(G, s)
+	S = stack()
+	T = set()
+	S.push(s)
+	while ~S.isempty()
+		v = S.pop()
+		if G.isgoal(v)
+			return SUCCESS
+		if ~T.has(v)
+			T.add(v)
+			for n in reverse(G.neighbours(v))
+				if ~T.has(n)
+					S.push(n)
+	return FAILURE
+	
+Ewentualne przyspieszenie: 
+
+function dfs(G, s)
+	S = stack()
+	T = set()
+	S.push(s)
+	while ~S.isempty()
+		v = S.pop()
+		if ~T.has(v)
+			if G.isgoal(v)
+				return SUCCESS
+			T.add(v)
+			for n in reverse(G.neighbours(v))
+				if ~T.has(n)
+					S.push(n)
+	return FAILURE
+	
+Pseudokod: 
+
+	if G.isgoal(s)
+		return SUCCESS
+	S = stack()
+	T = set()
+	S.push(s)
+	while ~S.isempty()
+		v = S.pop()
+		if ~T.has(v)
+			T.add(v)
+			for n in reverse(G.neighbours(v))
+				if G.isgoal(n)
+					reutrn SUCCESS
+				if ~T.has(n)
+					S.push(n)
+	return FAILURE
+
+* BFS różni się od DFS tym, że w BFS stosowana jest kolejka, a w DFS odwracana jest kolejność. 
+
+Pseudokod:
+
+function dfs(G, s)
+	if G.isgoal(s)
+		return SUCCESS
+	S = stack()
+	T = set()
+	S.push(s)
+	while ~S.isempty()
+		v = S.pop()
+		T.add(v)
+		for n in reverse(G.neighbours(n))
+			if G.isgoal() 
+				return SUCCESS
+			if ~T.has(n) and ~S.has(n)
+				S.push(n)
+	return FAILURE
+	
+	
+Algorytmy przeszukiwania ukierunkowane (tzw. heurstyczne) -> 
+
+Kryteria mogące stanowić heurystykę: 
+
+* Liczba kafalków na złej pozycji
+* Wiedza ekspercka
+* Itp.
+
+* Do tworzenia heurystyk można podchodzić na różne sposoby, ale co jest istnotne - każda heurystyka musi spełniać następujące wymaganie : 
+
+-> Dopuszczalność (ang. admissiablity) -> oznacza to, że heurystyka nie może przeszacować kosztu danej ścieżki - może jednak ona takiego kosztu niedoszacowywać. 
+
+-> (Opcjonalnie) heurstyka może być spójna (ang. consistent) - wiąże się to z kosztem heurystyki oraz nierównością trójkąta.
+
+Metryka Hamminga - jest to metryka, która sprawdza czy dany element jest na swoim miejscu - jeżeli nie jest to zwraca jeden, a jak jest to zwraca zero - wówczas koszty można zsumować - im wyższa wartość tym gorzej (bo oznacza to, że dużo kafelków nie jest na swojej pozycji).
+
+Metryka Manhatan - odległość jest liczona wzdłóż określonych współrzędnych, które są dalej sumowane - w wyniku uzyskuje się odległość - wówczas dla każdego bloczka sumuje się te odległości - i im wyższa jest wartość tej metryki - to jest gorzej - jeżeli odległość jest niewielka to znaczy, że układ jest blisko stanu docelowego.
+
+W przypadku gdy mamy do czynienia z szczególnymi ułożeniami kafelków może dojść do sytuacji, że metryki Hamminga i Manhatan są niedopuszczlane - co wynika z przeszacowania - jednak można temu zaradzić - poprzez ominięcie liczenia odległości dla bloczka 0.
+
+Algorytm A* : algorytm działa na takiej zasadzie, że umieszcza on na liście stanów otwartych umieszcza stanów - jednak w takiej kolejności, że wartości metryki w kolejności malejącej są bliżej zdjęcia z tej kolejki priorytetowej. 
+
+Algorytm A* nie porządkuje stanów w kolejce tylko i wyłącznie za pomocą funkcji heurysytcznej - tylko funkcji oceny -> bierze ona pod uwagę wartość funkcji heurystycznej oraz dotychczasowy koszt dotarcia do bieżącego wierchołka od stanu początkowego.
+
+czyli: f(n) = g(n) + h(n)
+
+
+
+
+Laboratorium - Sztuczna inteligencja i systemy ekspertowe. 
+
+Kontynuacja tematyki z poprzednich zajęć: 
+
+Algorytmy przeszukiwania: 
+
+* Algorytmy ślepe -> przeszukują przestrzeń stanów w sposób bardzo usystematyzowany - jednak nie kierunkują przeszukiwania.
+* Algorytmy heurystyczne -> to takiem, które ukierunkowują przeszukiwanie, w oparciu o wartości funkcji heurystycznej.
+
+Algorytm A* -> algorytm heurystyczny, ale nie tylko korzysta tylko z funkcji heurystycznej, ale również kosztu dotarcia do obecnego węzła (od węzła początkowego). Natomiast funkcja heurystyczna przybliża koszt dotarcia z obecnego stanu do stanu docelowego.
+
+W przypadku braku wykorzystania heurystyki w algorytmie A*, niewykorzystanie heurystyki prowadziłoby to do zmiany algorytmu na algorytm równokosztowych - odpowiednik algorytmu Dijkstry (jest to algorytm nie (?) optymalny i zachłanny).
+
+W przypadku algorytmu A*, w przypadku wykorzystania kosztu otrzymuje się wyszukiwanie czystoheurystyczne (Greedy-Best-First-Search).
+
+Heurystyka musi spełniać warunek dopuszczalności (i algorytmy heurystyczne mogą wykorzystywać takie heurystyki):
+
+* Nie może przeszacowywać kosztu dotarcia ze stanu obecnego do stanu docelowego.
+
+Heurystyka może też być spójna - czyli musi wykorzystywać nierówność trójkąta.
+
+Pseudokod dla A* dla spójnej heurystyki: 
+
+Lista stanów otwartych - trzyma stany otwarte zgodnie z priorytetami - kolejka priorytetowa typu min - im mniejsza wartość funkcji tym lepiej.
+
+function aStar(G, s)
+	p = priorityQueue()
+	T = set()
+	p.insert(s, 0)				# Dlaczego akurat priorytet to 0? -> Nie ma to żadnego znaczenia - jak go tam umieścimy bo i tak zaraz go zdejmiemy -> mogłaby to być dowolna wartość
+	while ~p.isEmpty():
+		v = p.pull()
+		if isGoal(v)
+			return SUCCESS
+		T.add(v)
+		for n in G.neighbours(v)
+			if ~T.has(n)
+				f = g(n) + h(n, G)
+				if ~p.has(n)
+					p.insert(n , f)
+				else 
+					if p.priority(n) > f
+						p.update(f)
+	return FAILURE
+	
+Jest to algorytm działający tylko w przypadku, gdy wykorzystana heurystyka jest spójna. Jest to jednak wersja niepraktyczna (dlaczego?: W przyapdku wyszukiwania danego stanu w kolejce priorytetowej to nie ma ona dobej złożoności obliczeniowej - w przypadku zbioru jest stała, a w przypadku tego najbardziej optymalna jest w tym przypadku logarytmiczna; Drugi element to to, że implementacje kolejki nie uwzględniają funkcji update - co można objeść ale traci się czas). Przesunięcie sprawdzenia do pętli (tego czy sąsiad jest stanem końcowym) nie jest tu jednak dobre [W BFS-ie to działało bardzo dobrze - w przypadku DFS - niezbyt bo mogło zwrócić rozwiązanie (już coś tam z nim było nie tak)]. Tego warunku nie można ruszyć.
+
+Implementacja unikająca wymienionych wcześniej problemów:
+
+function aStar(G, s):
+	p = priorityQueue()
+	T = set()
+	p.insert(s, 0)
+	while ~p.isEmpty():
+		v = p.pull()
+		if G.isGoal(v):
+			return SUCCESS
+		if ~T.has(v):
+			T.add(v)
+			for n in G.neighbours(v)
+			if ~T.has(n)
+				f = g(n) + h(n, G)
+				p.insert(n , f)
+	return FAILURE
+	
+Można dokonać jeszcze jednej optymalizacji: 
+
+function aStar(G, s):
+	p = priorityQueue()
+	T = set()
+	p.insert(s, 0)
+	while ~p.isEmpty():
+		v = p.pull()
+		if ~T.has(v):
+			if G.isGoal(v):
+				return SUCCESS
+			T.add(v)
+			for n in G.neighbours(v)
+			if ~T.has(n)
+				f = g(n) + h(n, G)
+				p.insert(n , f)
+	return FAILURE
+
+Podsumowanie: 
+
+Przedstawione algorytmy: 
+
+* BFS
+* DFS
+* A*
+
+Każdy z tych algorytmów operuje na pewniej liście stanów otwartych - w przypadku nawet DFS rekurencyjnego.
+
+W przypadku BFS - wykorzystywana była kolejka FIFO - elementy wchodzą z prawej a wychodzą z lewej
+W przypadku DFS - wykorzystywana była kolejka LIFO - elementy wchodzą z lewej a wychodzą z lewej
+W przypadku BFS - wykorzystywana była kolejka priorytetowa - elementy są ułożone na podstawie wartości priorytetu.
+
+Do przechowywania stanu może zostać wykorzystana tablica dwuwymiarowa (o rozmiarach 4 x 4) - oczywiście taka tablica jest indeksowana (w różny sposób np. od [0,0] do [4,4]).
+
+Stan gry można też przechowywać w tablicy jednowymiarowej - czyli w wektorze - plus w porównaniu do tablicy dwuwymiarowej: trudniejsze jest określanie sąsiadów jest trudniejsze z powodu przeliczania - jednak nie jest to jakaś wielka zaleta - w przypadku niektóych języków programowania tablice dwuwymiarowe miałby większy narzut pamięci, przy generowaniu dynamicznym tablicy - bo takie jest założenie programu - dynamicznej tablicy w C++ się zrobić nie da bo na początek jest tablica 4 wskaźników, a potem każdy z tych wskaźników wskazuje na kolejną tablicę 4 - elementową. -> czyli w grunice rzeczy mamy 4 x 8 bajtów więcej zajętej pamięci - np. czyli 8 bajtów na tablicę - jednak gdyby trzeba było przejść przez kilka miliardów stanów no to narzut byłby ogromny.
+
+Problem z tablicą dwuwymiarową jest przy przeszukiwaniu w celu znalezienia 0 - wówczas dana jest złożonść liniowa.
+
+Inną implementacją może być odwrócona tablica - czyli tablica jednowymiarowa, gdzie indeks oznacza wartość elementu, a wartość jego położenie - dobre bo łatwo zero znaleźć, nie do końca dobre bo ciężko przemieszczać elementy.
+
+W związku z tym można stworzyć strukturę, gdzie znajduje się na pierwszym polu tablica ze stanem, a na drugim znajduje się pozycja zera - wówczas nie ma potrzeby przeszukiwać całej tablicy.
+
+Można jeszcze zoptymalizać typ danych - jak np. zamiast int'a wykorzystywać bajty - albo unsigned char, albo uint 8 albo jeszcze coś innego.
+
+Lista stanów otwartych - jest różna w zależności od algorytmu. 
+* BFS - kolejka (FIFO) -> kluczowe operacje: dodawanie elementu na końcu i usuwanie elementu z początku - dobra implementacja: lista dwustronna (ang. deque). Złożoność stała, amorytzowana (czyli raz na jakiś czas trzeba porządkować taką strukturę).
+
+C++ : std::queue, std::deque (lepsze bo std::queue i tak z tego korzysta)
+Java : ArrayDeque 
+Python : w module collections, deque
+
+* DFS - stos (kolejka LIFO) -> dodawanie elementów na końcu i usuwanie elementów z końca:
+
+C++ : std::stack, pod spodem działa std::deque
+Java : Stack - działa na bazie klasy ArrayDeque
+Python : lista, standardowa wbudowana w Pythona
+
+* A* - kolejka priorytetowa ;kluczowe operacje -> dodawanie elementu zgodnie z priorytetem, usuwanie elementu z początku. W przypadku zwykłej listy - wyszukiwanie liniowe - natomiast lepiej wykorzystać kopiec, czasami też sterta (chociaż to raczej do pamięci - sysopy) - dobre bo złożoność logarytmiczna.
+
+C++ : std::priority_queue
+Java : PriorityQueue
+Python : lista, ale nie korzystamy z jej metod - używamy na nim metod z modułu heap_queue z biblioteki standardowej - funkcje operują na liście zgodnie z tym jak operowałby kopiec.
+
+Lista stanów zamkniętych : ma inną specyfikę - ważne jest aby element tam był, a nie gdzie jest konkretnie -> kluczowe operacje - dodanie elementu, sprawdzenie czy jest w tablicy - efektywne struktury danych bazują na tablicy haszującej (ang. hash table) - złożoność obliczeniowa jest stała - nie ważne od liczby elementów koszt ich wyszukania jest taki sam - przynajmniej w teorii.
+
+-> C++ : std::unordered_set / std::unordered_map
+-> Java : HashSet / HashMap
+-> Python : set / dict -> typy wbudowane w język
+
+Ważne jest w przypadku powyższych struktur, aby skrót był wyliczany prawidłowo.
+
+Rozwiązanie to ciąg operatorów, który zastosowany doprowadzi nas od stanu początkowego do stanu docelowego - tylko pytanie jak odtworzyć kolejność operatorów - sam cache nie wystarczy - potrzeba: 
+
+* Znać informację o odniesieniu - np. wskaźnik, referencja do stanu rodzica
+* Informacji o zastosowanym operatorze na stanie rodzica
+* Dotychczasowy koszt scieżki - to raczej tylko w przypadku A*
+
+Istnieją dwa różne podejścia:
+
+* Podejście 1.: Informacja o stanie i powyższe trzy łączone są w jedną strukturę danych - jest to węzeł -> Tu się powinno korzystać ze zbioru, jako listy stanów zamkniętych
+* Podejście 2.: Potrzebne jest przetrzymywanie pewnych asocjacji - wykorzystywana może być do tego pewna tablica asocjacyjna - mamy klucze i wartości: klucz to jest stan, a wartością skojarzoną jest strukura danych obejmująca rodzica i operator. -> Tu się powino korzystać ze słowników / map jako listy stanów zamkniętych.
+
+Przy wyliczaniu haszy trzeba uniknąć kliku pułapek: 
+
+* W przypadku podjeścia 1. hasz musi być liczony tylko i wyłączonie na podstawie stanu, a nie rodzica i operatora -> wtedy może to prowadzić do sytuacji, gdzie ten sam stan osiągnięty od innego rodzica i innego opeartora, skutkuje innym haszem
+
+* Trzeba uważać na funkcje, bo często w językach programowania do funkcji haszującej wykorzystywane są adresy - co nie jest dobrym rozwiązaniem.
+
+Wniosek: Trzeba zaimplementować odpwiednią funkcję haszującą.
+
+C++ : dodanie odpowiedniej fukncji przy tworzniu strukury danych
+Java : nadpisanie metody hashCode z Object'uint
+Python : implementacja funkcji __hash__
+
+W ramach zadania trzeba zaimplementować dwa algorytmy przeszukiwania na ślepo i jeden heursytyczny. 
+
+* DFS -> algorytm wrażliwy na generowanie sąsiadów -> pytanie brzmi czy dla BFS jest to samo -> możliwych porządków generowania sąsiadów jest 24 (kombinacja 4: U, D, L, R).
+
+* Stany początkowe to wszystkie stany o głębokości od 1 do 7 (włącznie) = 413 stanów * 2 * 8 => co daje 6608 uruchomień + jesze A* 413 * 1 * 2 = 876 uruchomień 
+
+Czyli w sumie 7434 uruchomienia programu.
+
+W związku z tym trzeba korzystać z udostępnionych skryptów - generator układanek - z GUI - generuje do pliku układy początkowe nawet do głębokości 15 - ale również można dać inne typy układanek.
+
+Wizualizator układanek - program w Javie z GUI, wczytuje się plik z układem i plik z rozwiązaniem można patrzeć na kolejne ułożenia układanki po zastosowaniu operatorów - debbuger dla rozwiązań - dobre do testowania programu. 
+
+Jeżeli chcemy dokonać walidacji rozwiązań to dostępny jest walidator - ma dwa tryby działania -> dokonuje on oceny rozwiązania - nie trzeba klikać przez kolejne kroki - drugi tryb pracy: konsolowy - jako argumenty podajemy nazwę pliku z układem i nazwę pliku z rozwiązaniem - trzeba będzie go oskryptować (a w sumie chyba już jest).
+
+Ważne jest podanie nazwy pliku z programem do skryptu uruchomienowego - tylko to trzeba zmienić - nic innego nie można bo arugmeny są generowane przez skrypt.
+
+Uruchamiacz walidacji uruchamia walidator w trybie wsadowym. Trzeba też będzie trzeba dodać scieżkę do walidatora.
+
+Ponadto zwracane będą statystyki: 
+
+* Do zczytywania danych z plików może zostać wykorzystany ekstraktor danych -> zbiera informacje z plików i wyświetla jako tabela - warto sobie go przekierować do pliku np. CSV a dalej to KAD w Pythonie.
+
+Trzeba będzie napisać sprawozdanie - trzeba się trzymać wytycznych - wykresy zgodnie z makietą.
+
+Aby uruchomić programy to trzeba będzie zainstalować odpowiednią wersję Javy - post jest dostępny na formu aktualności - można sobie pobrać z odpowiedniej strony -> Java 8, musi zawierać bibliotekę JavaFX w odpowiedniej wersji. 
+
+
+
+
