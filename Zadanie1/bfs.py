@@ -4,7 +4,10 @@ from functions import *
 
 def bfs(puzzles):
     pozX, puzY = setStart(puzzles)
-
+    printPuzzles(puzzles)
+    print("")
+    switchPositions("D",pozX,puzY,puzzles)
+    printPuzzles(puzzles)
     return 0
 
 """
@@ -24,10 +27,23 @@ def setStart(puzzles):
 
     return pozX, pozY
 
-
-def checkpossibilities(puzzles, pozX, pozY):
+"""
+sprawdza jakie ruchy są możliwe z danej pozycji
+uzględnia ostatnią pozycję na której znajdowało się 0
+"""
+def checkpossibilities(puzzles, pozX, pozY, last = None):
     possibilities = []
     NOT = []
+
+    if last != None:
+        if last == "U":
+            last = "D"
+        if last == "D":
+            last = "U"
+        if last == "L":
+            last = "P"
+        if last == "P":
+            last = "L"
 
     # sprawdz U
     if pozY + 1 < len(puzzles):
@@ -57,7 +73,28 @@ def checkpossibilities(puzzles, pozX, pozY):
     else:
         NOT.append("L")
 
+    if last in possibilities:
+        possibilities.remove(last)
+        NOT.append(last)
+
     print(possibilities)
     print(NOT)
 
-    return 0
+    return possibilities
+
+def switchPositions(move,pozX,pozY,puzzles):
+
+    if move == "U":
+        puzzles[pozY][pozX] = puzzles[pozY+1][pozX]
+        puzzles[pozY + 1][pozX] = "0"
+    elif move == "D":
+        puzzles[pozY][pozX] = puzzles[pozY - 1][pozX]
+        puzzles[pozY - 1][pozX] = "0"
+    elif move == "L":
+        puzzles[pozY][pozX] = puzzles[pozY][pozX-1]
+        puzzles[pozY][pozX-1] = "0"
+    elif move == "P":
+        puzzles[pozY][pozX] = puzzles[pozY][pozX + 1]
+        puzzles[pozY][pozX + 1] = "0"
+
+    return puzzles
