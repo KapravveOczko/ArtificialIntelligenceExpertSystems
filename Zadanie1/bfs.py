@@ -26,36 +26,35 @@ def setStart(puzzles):
 
 
 def checkpossibilities(puzzles, pozX, pozY):
-
     possibilities = []
     NOT = []
 
-    #sprawdz U
-    try:
-        if puzzles[pozY+1][pozX] != None:
+    # sprawdz U
+    if pozY + 1 < len(puzzles):
+        if puzzles[pozY + 1][pozX] != "0":
             possibilities.append("U")
-    except:
+    else:
         NOT.append("U")
 
-    #sprawdz D
-    try:
-        if puzzles[pozY -1][pozX] != None:
+    # sprawdz D
+    if pozY - 1 >= 0:
+        if puzzles[pozY - 1][pozX] is not None:
             possibilities.append("D")
-    except:
+    else:
         NOT.append("D")
 
-    #sprawdz P
-    try:
-        if puzzles[pozY][pozX+1] != None:
+    # sprawdz P
+    if pozX + 1 < len(puzzles[0]):
+        if puzzles[pozY][pozX + 1] is not None:
             possibilities.append("P")
-    except:
+    else:
         NOT.append("P")
 
     # sprawdz L
-    try:
-        if puzzles[pozY][pozX -1] != None:
+    if pozX - 1 >= 0:
+        if puzzles[pozY][pozX - 1] is not None:
             possibilities.append("L")
-    except:
+    else:
         NOT.append("L")
 
     print(possibilities)
