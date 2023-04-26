@@ -21,3 +21,18 @@ def loadToArray(content):
     puzzle = content.reshape((w, k))  # Poprawienie kodu na podstawie wczytanych w i k
 
     return puzzle
+
+def printPuzzles(puzzle):
+    print(puzzle)
+    return 0
+
+def checkPuzzles(A, B):
+    result = True
+    for i in range(len(A)):
+        for j in range(len(A[0])):
+            if A[i][j] != B[i][j]:
+                result = False
+                break
+
+    print(result)
+    return result
