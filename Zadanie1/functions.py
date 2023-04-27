@@ -26,6 +26,10 @@ def printPuzzles(puzzle):
     print(puzzle)
     return 0
 
+'''
+:return True if puzzles are equal
+:return False if puzzles not equal
+'''
 def checkPuzzles(A, B):
     result = True
     for i in range(len(A)):
@@ -34,5 +38,5 @@ def checkPuzzles(A, B):
                 result = False
                 break
 
-    print(result)
+    #print(result)
     return result

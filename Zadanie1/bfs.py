@@ -1,14 +1,78 @@
 import numpy as np
+import  functions
 from functions import *
+import queue
+from queue import *
+
+'''
+THE PLAN:
+
+ -> sprawdzić stan na wejściu
+ -> inicjować kolejkę (możliwe ścierzki i aktualny stan)
+ 
+ -> LOOP
+    -> pop z kolejki
+    -> sprawdzić stan
+        -> jeśli sukces zwracamy sukces
+    -> sprawdzić możliwe ścierzki
+    -> dodac ścierzki do kolejki (ścierzka + kolejka)
+    
+-> kolejka się skończyła bez sukcesu (zwracamy porażkę)
+
+-------
+
+jak zadziała robimy zapis jak nie mamy problem
+ 
+'''
 
 
-def bfs(puzzles):
+def bfs(puzzles, puzzlesAnswer):
+
+    #sprawdzamy dane wejściowe
+    if functions.checkPuzzles(puzzles,puzzlesAnswer) == True:
+        return True
+    last = None
+    queue = Queue()
+
+    #uzupełniamy początkową kolejkę
+    pozX,pozY = setStart(puzzles)
+    possibilities = []
+    possibilities = checkpossibilities(puzzles,pozX,pozY,last)
+
+    for i in range(len(possibilities)):
+        entry = [puzzles, possibilities[i]]
+        queue.enqueue(entry)
+
+    #przeszukujemy w szerz dopuki kolejka nie jest pusta
+    while queue.isEmpty != True :
+
+        entry = queue.dequeue()
+        puzzles = entry[0]
+        wayToGo = entry[1]
+        pozX, pozY = setStart(puzzles)
+
+        puzzles = switchPositions(wayToGo,pozX,pozY,puzzles)
+        if functions.checkPuzzles(puzzles, puzzlesAnswer) == True:
+            return True
+        last = wayToGo
+        possibilities = checkpossibilities(puzzles, pozX, pozY, last)
+
+        for i in range(len(possibilities)):
+            entry = [puzzles, possibilities[i]]
+            queue.enqueue(entry)
+
+    return False
+
+def bfsTest(puzzles):
+    puzzlesAnswer = [['1','2'],['3','0']]
     pozX, puzY = setStart(puzzles)
     printPuzzles(puzzles)
     print("")
     switchPositions("D",pozX,puzY,puzzles)
     printPuzzles(puzzles)
+    checkPuzzles(puzzles, puzzlesAnswer)
     return 0
+
 
 """
 znajduje pozycję 0
