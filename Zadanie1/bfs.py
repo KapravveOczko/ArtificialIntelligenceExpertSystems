@@ -28,6 +28,10 @@ jak zadziała robimy zapis jak nie mamy problem
 
 def bfs(puzzles, puzzlesAnswer):
 
+    print("puzzles")
+    print(puzzles)
+    print("puzzles")
+
     #sprawdzamy dane wejściowe
     if functions.checkPuzzles(puzzles,puzzlesAnswer) == True:
         return True
@@ -43,23 +47,48 @@ def bfs(puzzles, puzzlesAnswer):
         entry = [puzzles, possibilities[i]]
         queue.enqueue(entry)
 
+        # queue.print_queue()
+        # print("-----------")
+
     #przeszukujemy w szerz dopuki kolejka nie jest pusta
     while queue.isEmpty != True :
 
+        print("----------------------")
+
+        print("-before_pop-")
+        queue.print_queue()
+
         entry = queue.dequeue()
+
+
         puzzles = entry[0]
         wayToGo = entry[1]
+
+        print("poped:")
+        print(entry)
+        print("-afterpop-")
+        queue.print_queue()
+
+
         pozX, pozY = setStart(puzzles)
 
+
+
         puzzles = switchPositions(wayToGo,pozX,pozY,puzzles)
+        possibilities = checkpossibilities(puzzles, pozX, pozY, last)
+
+
+
         if functions.checkPuzzles(puzzles, puzzlesAnswer) == True:
             return True
         last = wayToGo
-        possibilities = checkpossibilities(puzzles, pozX, pozY, last)
 
         for i in range(len(possibilities)):
             entry = [puzzles, possibilities[i]]
             queue.enqueue(entry)
+
+        # queue.print_queue()
+        # print("-----------")
 
     return False
 
@@ -109,19 +138,19 @@ def checkpossibilities(puzzles, pozX, pozY, last = None):
         if last == "P":
             last = "L"
 
-    # sprawdz U
+        # sprawdz U
     if pozY + 1 < len(puzzles):
-        if puzzles[pozY + 1][pozX] != "0":
-            possibilities.append("U")
-    else:
-        NOT.append("U")
-
-    # sprawdz D
-    if pozY - 1 >= 0:
-        if puzzles[pozY - 1][pozX] is not None:
+        if puzzles[pozY + 1][pozX] is not None:
             possibilities.append("D")
     else:
         NOT.append("D")
+
+        # sprawdz D
+    if pozY - 1 >= 0:
+        if puzzles[pozY - 1][pozX] is not None:
+            possibilities.append("U")
+    else:
+        NOT.append("U")
 
     # sprawdz P
     if pozX + 1 < len(puzzles[0]):
@@ -137,21 +166,23 @@ def checkpossibilities(puzzles, pozX, pozY, last = None):
     else:
         NOT.append("L")
 
+
+
     if last in possibilities:
         possibilities.remove(last)
         NOT.append(last)
 
-    print(possibilities)
-    print(NOT)
+    #print(possibilities)
+    #print(NOT)
 
     return possibilities
 
 def switchPositions(move,pozX,pozY,puzzles):
 
-    if move == "U":
+    if move == "D":
         puzzles[pozY][pozX] = puzzles[pozY+1][pozX]
         puzzles[pozY + 1][pozX] = "0"
-    elif move == "D":
+    elif move == "U":
         puzzles[pozY][pozX] = puzzles[pozY - 1][pozX]
         puzzles[pozY - 1][pozX] = "0"
     elif move == "L":

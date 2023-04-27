@@ -17,3 +17,6 @@ class Queue:
 
     def size(self):
         return len(self.items)
+
+    def print_queue(self):
+        print('\n'.join(map(str, self.items)) + '\n')
