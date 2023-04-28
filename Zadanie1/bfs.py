@@ -1,8 +1,7 @@
-import numpy as np
 import  functions
 from functions import *
-import queue
 from queue import *
+import copy
 
 '''
 THE PLAN:
@@ -37,16 +36,20 @@ def bfs(puzzles, puzzlesAnswer):
     #uzupełniamy początkową kolejkę
     pozX,pozY = setStart(puzzles)
     possibilities = []
-    possibilities = checkpossibilities(puzzles,pozX,pozY,last)
+    possibilities = checkpossibilities(puzzles,pozX,pozY)
 
     for i in range(len(possibilities)):
-        entry = [puzzles.copy(), possibilities[i]]
+        tmp = copy.copy(possibilities[i])
+        entry = [copy.deepcopy(puzzles), tmp]
         queue.enqueue(entry)
-
-
 
     #przeszukujemy w szerz dopuki kolejka nie jest pusta
     while queue.isEmpty != True :
+
+        print("------------------")
+        # queue.print_queue()
+        print(possibilities)
+        print("------------------")
 
         entry = queue.dequeue()
         puzzles = entry[0]
@@ -60,7 +63,8 @@ def bfs(puzzles, puzzlesAnswer):
         last = wayToGo
 
         for i in range(len(possibilities)):
-            entry = [puzzles.copy(), possibilities[i]]
+            tmp = copy.copy(possibilities[i])
+            entry = [copy.deepcopy(puzzles), tmp]
             queue.enqueue(entry)
 
     return False
@@ -99,7 +103,6 @@ uzględnia ostatnią pozycję na której znajdowało się 0
 """
 def checkpossibilities(puzzles, pozX, pozY, last = None):
     possibilities = []
-    NOT = []
 
     if last != None:
         if last == "U":
@@ -115,38 +118,25 @@ def checkpossibilities(puzzles, pozX, pozY, last = None):
     if pozY + 1 < len(puzzles):
         if puzzles[pozY + 1][pozX] is not None:
             possibilities.append("D")
-    else:
-        NOT.append("D")
+
 
         # sprawdz D
     if pozY - 1 >= 0:
         if puzzles[pozY - 1][pozX] is not None:
             possibilities.append("U")
-    else:
-        NOT.append("U")
 
     # sprawdz P
     if pozX + 1 < len(puzzles[0]):
         if puzzles[pozY][pozX + 1] is not None:
             possibilities.append("P")
-    else:
-        NOT.append("P")
 
     # sprawdz L
     if pozX - 1 >= 0:
         if puzzles[pozY][pozX - 1] is not None:
             possibilities.append("L")
-    else:
-        NOT.append("L")
-
-
 
     if last in possibilities:
         possibilities.remove(last)
-        NOT.append(last)
-
-    #print(possibilities)
-    #print(NOT)
 
     return possibilities
 
