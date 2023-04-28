@@ -46,17 +46,23 @@ def bfs(puzzles, puzzlesAnswer):
     #przeszukujemy w szerz dopuki kolejka nie jest pusta
     while queue.isEmpty != True :
 
-        print("------------------")
-        # queue.print_queue()
-        print(possibilities)
-        print("------------------")
-
         entry = queue.dequeue()
         puzzles = entry[0]
         wayToGo = entry[1]
+
         pozX, pozY = setStart(puzzles)
+
+        print("------------------")
+        queue.print_queue()
+        print("------------------")
+        print(puzzles)
+        print(wayToGo)
+        print("===")
         puzzles = switchPositions(wayToGo,pozX,pozY,puzzles)
+        pozX, pozY = setStart(puzzles)
         possibilities = checkpossibilities(puzzles, pozX, pozY, last)
+
+        print(puzzles)
 
         if functions.checkPuzzles(puzzles, puzzlesAnswer) == True:
             return True
