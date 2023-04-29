@@ -2,6 +2,7 @@ import  functions
 from functions import *
 from queue import *
 import copy
+import time
 
 '''
 THE PLAN:
@@ -26,28 +27,29 @@ jak zadziała robimy zapis jak nie mamy problem
 
 
 def bfs(puzzles, puzzlesAnswer):
-
-    #sprawdzamy dane wejściowe
+    startTime = time.time()
     if functions.checkPuzzles(puzzles,puzzlesAnswer) == True:
         return True
+
     last = None
     queue = Queue()
-
-    #uzupełniamy początkową kolejkę
     pozX,pozY = setStart(puzzles)
     possibilities = checkpossibilities(puzzles,pozX,pozY)
-    visited = None #stany odiwedzone
+    visited = ""
+    iter = 0
 
     for i in range(len(possibilities)):
-        entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i])]
+        entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.copy(visited)]
         queue.enqueue(entry)
 
-    #przeszukujemy w szerz dopuki kolejka nie jest pusta
     while queue.isEmpty != True :
+
+        iter = iter +1
 
         entry = queue.dequeue()
         puzzles = entry[0]
         wayToGo = entry[1]
+        visited = entry[2]
 
         pozX, pozY = setStart(puzzles)
 
@@ -57,95 +59,52 @@ def bfs(puzzles, puzzlesAnswer):
         print(puzzles)
         print(wayToGo)
         print("===")
+
         puzzles = switchPositions(wayToGo,pozX,pozY,puzzles)
+
+        if functions.checkPuzzles(puzzles, puzzlesAnswer) == True:
+            print(visited)
+            endTime = time.time()
+            return visited, iter, startTime-endTime
+
+        visited = str(visited) + wayToGo
         pozX, pozY = setStart(puzzles)
         possibilities = checkpossibilities(puzzles, pozX, pozY, last)
 
         print(puzzles)
 
-        if functions.checkPuzzles(puzzles, puzzlesAnswer) == True:
-            return True
         last = wayToGo
-
         for i in range(len(possibilities)):
-            entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i])]
+            entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]),copy.copy(visited)]
             queue.enqueue(entry)
 
-    return False
+    endTime = time.time()
+    return -1,iter, startTime-endTime
 
-"""
-znajduje pozycję 0
-"""
-def setStart(puzzles):
+def saveAnswerInfo(fileName,visited,iter,time):
+    '''
+1 linia (liczba całkowita): długość znalezionego rozwiązania - o takiej samej wartości jak w pliku z rozwiązaniem (przy czym gdy program nie znalazł rozwiązania, wartość ta to -1);
+2 linia (liczba całkowita): liczbę stanów odwiedzonych;
+3 linia (liczba całkowita): liczbę stanów przetworzonych;
+4 linia (liczba całkowita): maksymalną osiągniętą głębokość rekursji;
+5 linia (liczba rzeczywista z dokładnością do 3 miejsc po przecinku): czas trwania procesu obliczeniowego w milisekundach.
+    '''
 
-    pozX = None
-    pozY = None
+    with open("./puzzlesAnswers/" + fileName + "_sol_info" + ".txt", "w") as file:
+        if visited != -1:
+            strings = [str(len(visited)), str(iter),str(iter),str(len(visited)),str(time)]
+        else:
+            strings = ["-1", str(iter),str(iter),str(iter),str(time)]
 
-    for i in range(len(puzzles)):
-        for j in range(len(puzzles[0])):
-            if puzzles[i][j] == "0":
-                pozY = i
-                pozX = j
-                break
+        file.writelines([s + "\n" for s in strings])
+    return 0
 
-    return pozX, pozY
+def saveAnswer(fileName,visited):
 
-"""
-sprawdza jakie ruchy są możliwe z danej pozycji
-uzględnia ostatnią pozycję na której znajdowało się 0
-"""
-def checkpossibilities(puzzles, pozX, pozY, last = None):
-    possibilities = []
-
-    if last != None:
-        if last == "U":
-            last = "D"
-        if last == "D":
-            last = "U"
-        if last == "L":
-            last = "P"
-        if last == "P":
-            last = "L"
-
-        # sprawdz U
-    if pozY + 1 < len(puzzles):
-        if puzzles[pozY + 1][pozX] is not None:
-            possibilities.append("D")
-
-
-        # sprawdz D
-    if pozY - 1 >= 0:
-        if puzzles[pozY - 1][pozX] is not None:
-            possibilities.append("U")
-
-    # sprawdz P
-    if pozX + 1 < len(puzzles[0]):
-        if puzzles[pozY][pozX + 1] is not None:
-            possibilities.append("P")
-
-    # sprawdz L
-    if pozX - 1 >= 0:
-        if puzzles[pozY][pozX - 1] is not None:
-            possibilities.append("L")
-
-    if last in possibilities:
-        possibilities.remove(last)
-
-    return possibilities
-
-def switchPositions(move,pozX,pozY,puzzles):
-
-    if move == "D":
-        puzzles[pozY][pozX] = puzzles[pozY+1][pozX]
-        puzzles[pozY + 1][pozX] = "0"
-    elif move == "U":
-        puzzles[pozY][pozX] = puzzles[pozY - 1][pozX]
-        puzzles[pozY - 1][pozX] = "0"
-    elif move == "L":
-        puzzles[pozY][pozX] = puzzles[pozY][pozX-1]
-        puzzles[pozY][pozX-1] = "0"
-    elif move == "P":
-        puzzles[pozY][pozX] = puzzles[pozY][pozX + 1]
-        puzzles[pozY][pozX + 1] = "0"
-
-    return puzzles
+    with open("./puzzlesAnswers/" +fileName + "_sol" + ".txt", "w") as file:
+        if visited != -1:
+            strings = [str(len(visited)), str(visited)]
+            file.writelines([s + "\n" for s in strings])
+        else:
+            file.writelines("-1")
+    return 0
