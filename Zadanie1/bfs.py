@@ -35,12 +35,11 @@ def bfs(puzzles, puzzlesAnswer):
 
     #uzupełniamy początkową kolejkę
     pozX,pozY = setStart(puzzles)
-    possibilities = []
     possibilities = checkpossibilities(puzzles,pozX,pozY)
+    visited = None #stany odiwedzone
 
     for i in range(len(possibilities)):
-        tmp = copy.copy(possibilities[i])
-        entry = [copy.deepcopy(puzzles), tmp]
+        entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i])]
         queue.enqueue(entry)
 
     #przeszukujemy w szerz dopuki kolejka nie jest pusta
@@ -69,22 +68,10 @@ def bfs(puzzles, puzzlesAnswer):
         last = wayToGo
 
         for i in range(len(possibilities)):
-            tmp = copy.copy(possibilities[i])
-            entry = [copy.deepcopy(puzzles), tmp]
+            entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i])]
             queue.enqueue(entry)
 
     return False
-
-def bfsTest(puzzles):
-    puzzlesAnswer = [['1','2'],['3','0']]
-    pozX, puzY = setStart(puzzles)
-    printPuzzles(puzzles)
-    print("")
-    switchPositions("D",pozX,puzY,puzzles)
-    printPuzzles(puzzles)
-    checkPuzzles(puzzles, puzzlesAnswer)
-    return 0
-
 
 """
 znajduje pozycję 0
@@ -99,7 +86,7 @@ def setStart(puzzles):
             if puzzles[i][j] == "0":
                 pozY = i
                 pozX = j
-                return pozX, pozY
+                break
 
     return pozX, pozY
 

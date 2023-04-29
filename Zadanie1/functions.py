@@ -1,31 +1,31 @@
 import numpy as np
 
-
-def loadPuzzles(fileName):
+def  loadPuzzles2(fileName):
     fileName = "./puzzles/" + fileName + ".txt"
-
     with open(fileName, 'r') as file:
         content = file.read()
-        content = content.replace(" ","")
-        content = content.replace("\n", "")
+        content = content.replace("\n", " ")
+        print (content)
 
-    return content
+        w = int(content[0])  # Konwersja na liczbę całkowitą
+        k = int(content[2])  # Konwersja na liczbę całkowitą
+        content = content[4:]
 
-def loadToArray(content):
-    w = int(content[0])  # Konwersja na liczbę całkowitą
-    k = int(content[1])  # Konwersja na liczbę całkowitą
-    content = content[2:]
+        print(content)
 
-    content = np.array(list(content))  # Konwersja na listę znaków, a następnie na tablicę NumPy
+        array = []
+        for i in content.split():
+            array.append(int(i))
+        puzzle = [array[i:i + w] for i in range(0, len(array), k)]
 
-    puzzle = content.reshape((w, k))  # Poprawienie kodu na podstawie wczytanych w i k
+        for i in range(w):
+            for j in range(k):
+                puzzle[i][j] = str(puzzle[i][j])
+                puzzle[i][j] = puzzle[i][j].replace(" ","")
+
+        print(puzzle)
 
     return puzzle
-
-def printPuzzles(puzzle):
-    print(puzzle)
-    return 0
-
 '''
 :return True if puzzles are equal
 :return False if puzzles not equal
