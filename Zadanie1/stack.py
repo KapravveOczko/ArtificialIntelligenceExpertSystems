@@ -1,4 +1,4 @@
-class Queue:
+class Stack:
 
     def __init__(self, items=None):
         if items is None:
@@ -6,18 +6,18 @@ class Queue:
         else:
             self.items = items
 
-    def isEmpty(self):
+    def is_empty(self):
         return len(self.items) == 0
 
-    def enqueue(self, item):
+    def push(self, item):
         self.items.append(item)
 
-    def dequeue(self):
-        if not self.isEmpty():
-            return self.items.pop(0)
+    def pop(self):
+        if not self.is_empty():
+            return self.items.pop()
 
     def size(self):
         return len(self.items)
 
-    def print_queue(self):
+    def print_stack(self):
         print('\n'.join(map(str, self.items)) + '\n')

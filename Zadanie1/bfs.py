@@ -1,4 +1,3 @@
-import  functions
 from functions import *
 from queue import *
 import copy
@@ -28,8 +27,6 @@ jak zadziała robimy zapis jak nie mamy problem
 
 def bfs(puzzles, puzzlesAnswer):
     startTime = time.time()
-    if functions.checkPuzzles(puzzles,puzzlesAnswer) == True:
-        return True
 
     last = None
     queue = Queue()
@@ -37,6 +34,10 @@ def bfs(puzzles, puzzlesAnswer):
     possibilities = checkpossibilities(puzzles,pozX,pozY)
     visited = ""
     iter = 0
+
+    if checkPuzzles(puzzles,puzzlesAnswer) == True:
+        endTime = time.time()
+        return visited, iter, startTime - endTime
 
     for i in range(len(possibilities)):
         entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.copy(visited)]
@@ -61,13 +62,13 @@ def bfs(puzzles, puzzlesAnswer):
         print("===")
 
         puzzles = switchPositions(wayToGo,pozX,pozY,puzzles)
+        visited = str(visited) + wayToGo
 
-        if functions.checkPuzzles(puzzles, puzzlesAnswer) == True:
+        if checkPuzzles(puzzles, puzzlesAnswer) == True:
             print(visited)
             endTime = time.time()
             return visited, iter, startTime-endTime
 
-        visited = str(visited) + wayToGo
         pozX, pozY = setStart(puzzles)
         possibilities = checkpossibilities(puzzles, pozX, pozY, last)
 

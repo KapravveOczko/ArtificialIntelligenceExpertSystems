@@ -1,6 +1,6 @@
 import numpy as np
 
-def  loadPuzzles2(fileName):
+def  loadPuzzles(fileName):
     fileName = "./puzzles/" + fileName + ".txt"
     with open(fileName, 'r') as file:
         content = file.read()
@@ -71,8 +71,8 @@ def checkpossibilities(puzzles, pozX, pozY, last = None):
         if last == "D":
             last = "U"
         if last == "L":
-            last = "P"
-        if last == "P":
+            last = "R"
+        if last == "R":
             last = "L"
 
         # sprawdz U
@@ -86,10 +86,10 @@ def checkpossibilities(puzzles, pozX, pozY, last = None):
         if puzzles[pozY - 1][pozX] is not None:
             possibilities.append("U")
 
-    # sprawdz P
+    # sprawdz R
     if pozX + 1 < len(puzzles[0]):
         if puzzles[pozY][pozX + 1] is not None:
-            possibilities.append("P")
+            possibilities.append("R")
 
     # sprawdz L
     if pozX - 1 >= 0:
@@ -112,7 +112,7 @@ def switchPositions(move,pozX,pozY,puzzles):
     elif move == "L":
         puzzles[pozY][pozX] = puzzles[pozY][pozX-1]
         puzzles[pozY][pozX-1] = "0"
-    elif move == "P":
+    elif move == "R":
         puzzles[pozY][pozX] = puzzles[pozY][pozX + 1]
         puzzles[pozY][pozX + 1] = "0"
 
