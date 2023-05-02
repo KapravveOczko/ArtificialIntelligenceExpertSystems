@@ -35,10 +35,6 @@ def bfs(puzzles, puzzlesAnswer):
     visited = ""
     iter = 0
 
-    if checkPuzzles(puzzles,puzzlesAnswer) == True:
-        endTime = time.time()
-        return visited, iter, startTime - endTime
-
     for i in range(len(possibilities)):
         entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.copy(visited)]
         queue.enqueue(entry)

@@ -44,16 +44,15 @@ def dfs(puzzles, puzzlesAnswer):
         print("wczytane wartości:")
         print(puzzles)
         print("ruch: " + str(wayToGo))
-        print(visited)
-        print(path)
+        print("odwiedzone" + str(visited))
+        print("ścierzka: " +  str(path))
 
         puzzles = switchPositions(wayToGo, pozX, pozY, puzzles)
         if checkPuzzles(puzzles, puzzlesAnswer):
+            print()
+            print()
             print(path)
             return True
-
-        print("po zmianie:")
-        print(puzzles)
 
         is_visited = False
         for i in range(len(visited)):
@@ -66,15 +65,20 @@ def dfs(puzzles, puzzlesAnswer):
 
         pozX, pozY = setStart(puzzles)
         visited.append(copy.deepcopy(puzzles))
-        possibilities = checkpossibilities(puzzles, pozX, pozY, last)
 
-        print("możliwości: ")
-        print(possibilities)
+        if len(visited) == 7:
+            continue
+
+        possibilities = checkpossibilities(puzzles, pozX, pozY)
+
+        print("po zmianie: " + str(puzzles))
+        print("możliwości: " + str(possibilities))
 
         last = wayToGo
 
         for i in range(len(possibilities)):
             entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.deepcopy(visited), copy.copy(path)]
             stack.push(entry)
+
 
     return -1
