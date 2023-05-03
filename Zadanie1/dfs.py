@@ -4,36 +4,68 @@ import copy
 import time
 
 '''
-lifo
 kolejka stanów odwiedzonych
 
     sprawdzamy stan
     sprawdzamy możliwości poruszenia się z aktualnego stanu
-    dodajemy te stany do kolejki lifo
+    dodajemy te stany do stosu (kolejka lifo)
     dodajemy do nich tablice odwiedzonych stanów
     
 '''
 
 def dfs(puzzles, puzzlesAnswer):
 
-    startTime = time.time()
+    """
+    inicjujemy potrzebne wartości:
+    startTime: czas rozpoczęcia działania programu
+    stack: inicjalizacja kolejki lifo
+    pozX,pozY: pozycja 0
+    possibilities: możliwe przesunięcia
+    visited: lista odwiedzonych stanów
+    dodajemy do listy visited stan początkowy
+    path: wykonane ruchy
+    statesVisited: zlicza ile stanów odiwedziliśmy
+    maxDepth: maksymalna przeszukana głębokość
+    """
 
+    startTime = time.time()
     stack = Stack()
     pozX, pozY = setStart(puzzles)
     possibilities = checkpossibilities(puzzles, pozX, pozY)
     visited = []
     visited.append(copy.deepcopy(puzzles))
     path = ''
-
     statesVisited = 0
     maxDepth = 0 #trzeba dodać 1 na końcu bo stan początkowy
 
+    """
+    sprawdzamy czy stan początkowy to stan poszukiwany
+    wypełniamy stos możliwymi ruchami
+    entry: aktualny stan łamigłówki, ruch do wykonania, liesta stanów odwiedzonych,lista wykonanych już ruchów
+    """
+
     if checkPuzzles(puzzles, puzzlesAnswer):
         return path, statesVisited, maxDepth + 1, time.time() - startTime
-
     for i in range(len(possibilities)):
         entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.deepcopy(visited), copy.copy(path)]
         stack.push(entry)
+
+    """
+       rozpoczyna się pętla wykonywana tak długo jak stos nie jest pusty
+
+       pop'ujemy stos wpełniając zmienne
+       iterujemy ilość odwiedzonych stanów
+       ustanawiamy nowe pozycje x,y
+       dodajemy wykonany ruch do listy wykonaych ruchów
+       sprawdzamy osiągniętą głębokość
+       wykonujemy ruch 
+       sprawdzamy czy nowy stan był już osiągnięty oraz czy jest rozwiązaniem
+           jeśli tak tu konczy się funkcja, jej czas trwania jest pobierany przez zmienną endTime
+       ustanawiamy nowe pozycje x,y
+       dodajemy do stan do kolejki odwiedzonej
+       wypełniamy stos możliwymi ruchami
+
+       """
 
     while not stack.is_empty():
         entry = stack.pop()

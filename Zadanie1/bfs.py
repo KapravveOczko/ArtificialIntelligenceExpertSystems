@@ -4,8 +4,6 @@ import copy
 import time
 
 '''
-THE PLAN:
-
  -> sprawdzić stan na wejściu
  -> inicjować kolejkę (możliwe ścierzki i aktualny stan)
  
@@ -17,17 +15,22 @@ THE PLAN:
     -> dodac ścierzki do kolejki (ścierzka + kolejka)
     
 -> kolejka się skończyła bez sukcesu (zwracamy porażkę)
-
--------
-
-jak zadziała robimy zapis jak nie mamy problem
- 
 '''
 
 
 def bfs(puzzles, puzzlesAnswer):
-    startTime = time.time()
 
+    """
+    inicjujemy potrzebne wartości:
+    startTime: czas rozpoczęcia działania programu
+    last: ostatnio wykonany ruch
+    queue: inicjalizacja kolejki fifo
+    pozX,pozY: pozycja 0
+    possibilities: możliwe przesunięcia
+    visited: lista wykonaych ruchów
+    statesVisited: lista odwiedzonych stanów
+    """
+    startTime = time.time()
     last = None
     queue = Queue()
     pozX,pozY = setStart(puzzles)
@@ -35,19 +38,41 @@ def bfs(puzzles, puzzlesAnswer):
     visited = ""
     statesVisited = 1
 
+    """
+    sprawdzamy czy stan początkowy to stan poszukiwany
+    wypełniamy kolejkę fifo możliwymi ruchami
+    entry: aktualny stan łamigłówki, ruch do wykonania, lista wykonanych już ruchów
+    """
+
+    if checkPuzzles(puzzles, puzzlesAnswer) == True:
+        endTime = time.time()
+        return visited, statesVisited, endTime - startTime
     for i in range(len(possibilities)):
         entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.copy(visited)]
         queue.enqueue(entry)
 
+    """
+    rozpoczyna się pętla wykonywana tak długo jak kolejka nie jest pusta
+    
+    pop'ujemy kolejkę wpełniając zmienne
+    iterujemy ilość odwiedzonych stanów
+    ustanawiamy nowe pozycje x,y
+    wykonujemy ruch 
+    dodajemy wykonany ruch do listy wykonaych ruchów
+    sprawdzamy czy nowy stan jest rozwiązaniem
+        jeśli tak tu konczy się funkcja, jej czas trwania jest pobierany przez zmienną endTime
+    aktualizujemy "last"
+    wypełniamy kolejkę fifo możliwymi ruchami
+    
+    """
+
     while queue.isEmpty != True :
-
-        statesVisited = statesVisited +1
-
         entry = queue.dequeue()
         puzzles = entry[0]
         wayToGo = entry[1]
         visited = entry[2]
 
+        statesVisited = statesVisited + 1
         pozX, pozY = setStart(puzzles)
 
         print("------------------")
@@ -97,6 +122,11 @@ def saveBfsAnswerInfo(fileName, visited, iter, time):
     return 0
 
 def saveBfsAnswer(fileName, visited):
+
+    '''
+    1 linia (liczba całkowita): długość roziwązania
+    2 linia (permutacja roziwązania):
+    '''
 
     with open("./puzzlesAnswers/" +fileName + "_bfs_sol" + ".txt", "w") as file:
         if visited != -1:
