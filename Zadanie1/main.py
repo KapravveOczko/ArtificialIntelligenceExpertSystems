@@ -1,12 +1,13 @@
 from functions import *
 from bfs import *
 from dfs import *
+from aStar import *
 
 print("hello world")
 
-# puzzlesAnswer = [['1','2'],['3','0']]
-# puzzlesAnswer = [['1','2','3'],['4','5','6'],['7','8','0']]
-# puzzlesAnswer = [['1','2','3','4'],['5','6','7','8'],['9','10','11','12'],['13','14','15','0']]
+puzzlesAnswer2x2 = [['1','2'],['3','0']]
+puzzlesAnswer3x3 = [['1','2','3'],['4','5','6'],['7','8','0']]
+puzzlesAnswer4x4 = [['1','2','3','4'],['5','6','7','8'],['9','10','11','12'],['13','14','15','0']]
 # print(bfs(puzzles,puzzlesAnswer))
 
 #test dla bfs
@@ -38,9 +39,22 @@ print("hello world")
 #
 # print(dfs(puzzles,puzzlesAnswer))
 
+#test aStar
+
+fileName = "3x3_05_00001"
+puzzlesAnswer = puzzlesAnswer3x3
+puzzles = loadPuzzles(fileName)
+print("hamming: " + str(hamming(puzzles,puzzlesAnswer)))
+print("manhattan: " + str(manhattan(puzzles,puzzlesAnswer)))
+print("==================================")
+print(puzzles)
+print(aStar(puzzles,puzzlesAnswer))
+
+
+
 # program:
 
-puzzlesAnswer = [['1','2','3','4'],['5','6','7','8'],['9','10','11','12'],['13','14','15','0']]
-fileName = "4x4_07_00001"
-doDfs(fileName,puzzlesAnswer)
-doBfs(fileName,puzzlesAnswer)
+# puzzlesAnswer = puzzlesAnswer4x4
+# fileName = "4x4_07_00001"
+# doDfs(fileName,puzzlesAnswer)
+# doBfs(fileName,puzzlesAnswer)

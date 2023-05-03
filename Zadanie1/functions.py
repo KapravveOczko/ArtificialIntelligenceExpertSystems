@@ -5,13 +5,13 @@ def  loadPuzzles(fileName):
     with open(fileName, 'r') as file:
         content = file.read()
         content = content.replace("\n", " ")
-        print (content)
+        # print (content)
 
         w = int(content[0])  # Konwersja na liczbę całkowitą
         k = int(content[2])  # Konwersja na liczbę całkowitą
         content = content[4:]
 
-        print(content)
+        # print(content)
 
         array = []
         for i in content.split():
@@ -23,7 +23,7 @@ def  loadPuzzles(fileName):
                 puzzle[i][j] = str(puzzle[i][j])
                 puzzle[i][j] = puzzle[i][j].replace(" ","")
 
-        print(puzzle)
+        # print(puzzle)
 
     return puzzle
 '''
