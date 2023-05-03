@@ -66,6 +66,7 @@ def dfs(puzzles, puzzlesAnswer):
        wypełniamy stos możliwymi ruchami
 
        """
+    test = 0
 
     while not stack.is_empty():
         entry = stack.pop()
@@ -99,6 +100,7 @@ def dfs(puzzles, puzzlesAnswer):
         possibilities = checkpossibilities(puzzles, pozX, pozY)
         if len(visited) == 15:
             continue
+
 
         print("po zmianie: " + str(puzzles))
         print("możliwości: " + str(possibilities))

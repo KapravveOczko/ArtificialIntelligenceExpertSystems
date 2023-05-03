@@ -38,7 +38,7 @@ Jeśli otwarta lista węzłów jest pusta, zwróć brak ścieżki.
 Powtórz kroki 3-4 aż do znalezienia celu lub osiągnięcia maksymalnej wartości f_max.
 '''
 
-def aStar(puzzles, puzzlesAnswer):
+def aStar(puzzles, puzzlesAnswer,metrics):
 
     if checkPuzzles(puzzles, puzzlesAnswer):
         return True
@@ -46,7 +46,7 @@ def aStar(puzzles, puzzlesAnswer):
     queueOpen = Queue()
     visited = []
     visited.append(copy.deepcopy(puzzles))
-    cost = hamming(puzzles, puzzlesAnswer)
+    cost = metrics
     pozX, pozY = setStart(puzzles)
     possibilities = checkpossibilities(puzzles, pozX, pozY)
     path = ""
@@ -72,6 +72,7 @@ def aStar(puzzles, puzzlesAnswer):
         print("wczytane wartości:")
         print(puzzles)
         print("ruch: " + str(wayToGo))
+        print("odwiedzone" + str(visited))
 
         puzzles = switchPositions(wayToGo, pozX, pozY, puzzles)
         if puzzles in visited:
@@ -82,7 +83,7 @@ def aStar(puzzles, puzzlesAnswer):
             return True
 
         path = str(path) + wayToGo
-        cost = hamming(puzzles, puzzlesAnswer)
+        cost = metrics
         pozX, pozY = setStart(puzzles)
         possibilities = checkpossibilities(puzzles, pozX, pozY)
 
@@ -91,6 +92,8 @@ def aStar(puzzles, puzzlesAnswer):
         print("po zmianie: " + str(puzzles))
         print("możliwości: " + str(possibilities))
 
+        # visited.append(copy.deepcopy(puzzles))
+        #dodanie tej linijki wszystko psuje
 
         for i in range(len(possibilities)):
             entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.copy(path),copy.copy(cost), copy.copy(visited)]
@@ -99,55 +102,6 @@ def aStar(puzzles, puzzlesAnswer):
 
 
     return -1
-
-# def aStarTest2(puzzles, puzzlesAnswer):
-#
-#     startTime = time.time()
-#     last = None
-#     queue = Queue()
-#     pozX, pozY = setStart(puzzles)
-#     possibilities = checkpossibilities(puzzles, pozX, pozY)
-#     visited = ""
-#     statesVisited = 1
-#     hValue = hamming(puzzles, puzzlesAnswer)
-#
-#     if checkPuzzles(puzzles, puzzlesAnswer):
-#         endTime = time.time()
-#         return visited, statesVisited, endTime - startTime
-#
-#     queue.enqueue([copy.deepcopy(puzzles), "", copy.copy(visited), hValue])
-#
-#     while not queue.isEmpty():
-#
-#         entry = queue.dequeue()
-#         puzzles = entry[0]
-#         wayToGo = entry[1]
-#         visited = entry[2]
-#         fValue = len(visited) + entry[3]
-#
-#         statesVisited += 1
-#         pozX, pozY = setStart(puzzles)
-#
-#         if checkPuzzles(puzzles, puzzlesAnswer):
-#             endTime = time.time()
-#             return visited, statesVisited, endTime - startTime
-#
-#         for i in range(len(possibilities)):
-#             if last == checkOpposite(possibilities[i]):
-#                 continue
-#             #pozX, pozY = setStart(puzzles)
-#             newPuzzles = copy.deepcopy(puzzles)
-#             newVisited = copy.copy(visited)
-#             newPuzzles = switchPositions(possibilities[i], pozX, pozY, newPuzzles)
-#             newVisited += possibilities[i]
-#             hValue = hamming(newPuzzles, puzzlesAnswer)
-#             fValue = len(newVisited) + hValue
-#             queue.enqueue([newPuzzles, possibilities[i], newVisited, hValue, fValue])
-#
-#         queue.items.sort(key=lambda x: x[4])
-#
-#     endTime = time.time()
-#     return -1, statesVisited, endTime - startTime
 
 def hamming(puzzles, puzzlesAnswer):
     cost = 0
@@ -176,15 +130,3 @@ def manhattan(puzzles, puzzlesAnswer):
         # print("a: " + str(a) + " cost: " + str(cost))
 
     return cost
-
-# def checkOpposite(last):
-#     if last == "U":
-#         last = "D"
-#     if last == "D":
-#         last = "U"
-#     if last == "L":
-#         last = "R"
-#     if last == "R":
-#         last = "L"
-#
-#     return last

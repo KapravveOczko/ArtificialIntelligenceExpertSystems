@@ -10,3 +10,9 @@ pytania bez większej odpowiedzi:
     na razie tak jest że dodajemy początkowy
 
 #3: czy możliwe jest aby nie uzyskać wyniku?
+
+#4: czy da się zoptymalizować działanie?
+
+    lista visited dla A* i dfs
+
+#5: dlaczego visited psuje A*?
