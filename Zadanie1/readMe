@@ -1,0 +1,12 @@
+pytania bez większej odpowiedzi:
+
+#1: różnica między tymi dwoma?
+
+    2 linia (liczba całkowita): liczbę stanów odwiedzonych;
+    3 linia (liczba całkowita): liczbę stanów przetworzonych;
+
+#2: czy należy dodawać do tych 2 powyższych stan początkowy?
+
+    na razie tak jest że dodajemy początkowy
+
+#3: czy możliwe jest aby nie uzyskać wyniku?

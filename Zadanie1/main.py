@@ -21,22 +21,26 @@ print("hello world")
 # print(x)
 # print(y)
 # visited,iter,time = bfs(puzzles,puzzlesAnswer)
-# time = time * -1
 # time = round(time, 3)
 # saveAnswer(fileName,visited)
 # saveAnswerInfo(fileName,visited,iter,time)
 
 #test dla dfs
 
+# puzzles = loadPuzzles(fileName)
+# puzzlesAnswer = [['1','2','3','4'],['5','6','7','8'],['9','10','11','12'],['13','14','15','0']]
+# print(len(puzzles))
+# print(len(puzzles[0]))
+# x,y = setStart(puzzles)
+#
+# print(x)
+# print(y)
+#
+# print(dfs(puzzles,puzzlesAnswer))
 
-fileName = "4x4_04_00001"
-puzzles = loadPuzzles(fileName)
+# program:
+
 puzzlesAnswer = [['1','2','3','4'],['5','6','7','8'],['9','10','11','12'],['13','14','15','0']]
-print(len(puzzles))
-print(len(puzzles[0]))
-x,y = setStart(puzzles)
-
-print(x)
-print(y)
-
-print(dfs(puzzles,puzzlesAnswer))
+fileName = "4x4_07_00001"
+doDfs(fileName,puzzlesAnswer)
+doBfs(fileName,puzzlesAnswer)
