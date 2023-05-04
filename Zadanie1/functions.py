@@ -68,18 +68,17 @@ def checkpossibilities(puzzles, pozX, pozY, last = None):
     if last != None:
         if last == "U":
             last = "D"
-        if last == "D":
+        elif last == "D":
             last = "U"
-        if last == "L":
+        elif last == "L":
             last = "R"
-        if last == "R":
+        elif last == "R":
             last = "L"
 
         # sprawdz U
     if pozY + 1 < len(puzzles):
         if puzzles[pozY + 1][pozX] is not None:
             possibilities.append("D")
-
 
         # sprawdz D
     if pozY - 1 >= 0:

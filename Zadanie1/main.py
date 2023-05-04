@@ -50,12 +50,18 @@ puzzlesAnswer4x4 = [['1','2','3','4'],['5','6','7','8'],['9','10','11','12'],['1
 # print(puzzles)
 # print(aStar(puzzles,puzzlesAnswer,manhattan(puzzles, puzzlesAnswer)))
 
+#test
 
+# puzzlesAnswer = puzzlesAnswer4x4
+# fileName = "4x4_07_00006"
+# puzzles = loadPuzzles(fileName)
+# x,y = setStart(puzzles)
+# print(checkpossibilities(puzzles,x,y,"L"))
 
 # program:
 
 puzzlesAnswer = puzzlesAnswer4x4
-fileName = "4x4_07_00002"
+fileName = "4x4_07_00007"
 # doDfs(fileName,puzzlesAnswer)
 doBfs(fileName,puzzlesAnswer)
-doFullAStar(fileName,puzzlesAnswer)
+# doFullAStar(fileName,puzzlesAnswer)

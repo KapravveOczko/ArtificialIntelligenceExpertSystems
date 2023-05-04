@@ -37,7 +37,6 @@ def bfs(puzzles, puzzlesAnswer):
     possibilities = checkpossibilities(puzzles,pozX,pozY)
     visited = ""
     statesVisited = 1
-
     """
     sprawdzamy czy stan początkowy to stan poszukiwany
     wypełniamy kolejkę fifo możliwymi ruchami
@@ -72,6 +71,7 @@ def bfs(puzzles, puzzlesAnswer):
         wayToGo = entry[1]
         visited = entry[2]
 
+        last = wayToGo
         statesVisited = statesVisited + 1
         pozX, pozY = setStart(puzzles)
 
@@ -94,14 +94,18 @@ def bfs(puzzles, puzzlesAnswer):
 
         print("po zmianie: " + str(puzzles))
         print("możliwości: " + str(possibilities))
+        print("last: " + str(last))
 
-        last = wayToGo
+        # last = wayToGo
         for i in range(len(possibilities)):
             entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]),copy.copy(visited)]
             queue.enqueue(entry)
 
+        # if len(visited) == 7:
+        #     break
+
     endTime = time.time()
-    return -1,statesVisited, startTime-endTime
+    return -1,statesVisited, endTime-startTime
 
 def saveBfsAnswerInfo(fileName, visited, iter, time):
     '''
