@@ -40,9 +40,10 @@ Powtórz kroki 3-4 aż do znalezienia celu lub osiągnięcia maksymalnej wartoś
 
 def aStar(puzzles, puzzlesAnswer,metrics):
 
-    if checkPuzzles(puzzles, puzzlesAnswer):
-        return True
+    startTime = time.time()
 
+    statesVisited = 0
+    maxDepth = 0
     queueOpen = Queue()
     visited = []
     visited.append(copy.deepcopy(puzzles))
@@ -51,6 +52,8 @@ def aStar(puzzles, puzzlesAnswer,metrics):
     possibilities = checkpossibilities(puzzles, pozX, pozY)
     path = ""
 
+    if checkPuzzles(puzzles, puzzlesAnswer):
+        return path, statesVisited, maxDepth + 1, time.time() - startTime
     for i in range(len(possibilities)):
         entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.copy(path), copy.copy(cost), copy.copy(visited)]
         queueOpen.enqueue(entry)
@@ -80,12 +83,15 @@ def aStar(puzzles, puzzlesAnswer,metrics):
         if checkPuzzles(puzzles, puzzlesAnswer):
             print("ścierzka: " + str(path))
             print("po zmianie: " + str(puzzles))
-            return True
+            return path, statesVisited,  maxDepth + 1, time.time() - startTime
 
         path = str(path) + wayToGo
         cost = metrics
         pozX, pozY = setStart(puzzles)
         possibilities = checkpossibilities(puzzles, pozX, pozY)
+
+        if len(path) > maxDepth:
+            maxDepth = len(path)
 
         print("ścierzka: " + str(path))
         print("koszt: "+ str(cost))
@@ -130,3 +136,55 @@ def manhattan(puzzles, puzzlesAnswer):
         # print("a: " + str(a) + " cost: " + str(cost))
 
     return cost
+
+#do nazwy pliku trzeba dodać jaka metryka
+def saveAStarAnswerInfo(fileName, path, statesVisited,maxDepth, time, metrics):
+    '''
+1 linia (liczba całkowita): długość znalezionego rozwiązania - o takiej samej wartości jak w pliku z rozwiązaniem (przy czym gdy program nie znalazł rozwiązania, wartość ta to -1);
+2 linia (liczba całkowita): liczbę stanów odwiedzonych;
+3 linia (liczba całkowita): liczbę stanów przetworzonych;
+4 linia (liczba całkowita): maksymalną osiągniętą głębokość rekursji;
+5 linia (liczba rzeczywista z dokładnością do 3 miejsc po przecinku): czas trwania procesu obliczeniowego w milisekundach.
+    '''
+
+    with open("./puzzlesAnswers/" + fileName + "_a" + metrics + "_sol_info" + ".txt", "w") as file:
+        if path != -1:
+            strings = [str(len(path)), str(statesVisited), str(statesVisited), str(maxDepth), str(time)]
+        else:
+            strings = ["-1", ]
+
+        file.writelines([s + "\n" for s in strings])
+    return 0
+
+def saveAStarAnswer(fileName, path , metrics):
+
+    '''
+    1 linia (liczba całkowita): długość roziwązania
+    2 linia (permutacja roziwązania):
+    '''
+
+    with open("./puzzlesAnswers/" +fileName + "_a" + metrics + "_sol" + ".txt", "w") as file:
+        if path != -1:
+            strings = [str(len(path)), str(path)]
+            file.writelines([s + "\n" for s in strings])
+        else:
+            file.writelines("-1")
+    return 0
+
+def doAStar(fileName,puzzlesAnswer,metrics):
+    puzzles = loadPuzzles(fileName)
+    time = 0.00
+    path = ""
+    if metrics == "hmm":
+        path, statesVisited, maxDepth, time = aStar(puzzles, puzzlesAnswer, hamming(puzzles, puzzlesAnswer))
+    elif metrics == "man":
+        path, statesVisited, maxDepth, time = aStar(loadPuzzles(fileName), puzzlesAnswer, manhattan(puzzles, puzzlesAnswer))
+    time = round(time, 3)
+    saveAStarAnswer(fileName, path,metrics)
+    saveAStarAnswerInfo(fileName, path, statesVisited,maxDepth, time,metrics)
+    return 0
+
+def doFullAStar(fileName,puzzlesAnswer):
+    doAStar(fileName,puzzlesAnswer,"hmm")
+    doAStar(fileName,puzzlesAnswer,"man")
+    return 0

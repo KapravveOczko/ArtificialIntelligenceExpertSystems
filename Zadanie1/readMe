@@ -16,3 +16,7 @@ pytania bez większej odpowiedzi:
     lista visited dla A* i dfs
 
 #5: dlaczego visited psuje A*?
+
+TO DO:
+
+#1 sprawdzić czy głębokość, odwiedzone stany itd liczone są dla kazdego algotymu tak samo

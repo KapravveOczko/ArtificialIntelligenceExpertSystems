@@ -41,20 +41,21 @@ puzzlesAnswer4x4 = [['1','2','3','4'],['5','6','7','8'],['9','10','11','12'],['1
 
 #test aStar
 
-fileName = "4x4_07_00001"
-puzzlesAnswer = puzzlesAnswer4x4
-puzzles = loadPuzzles(fileName)
-print("hamming: " + str(hamming(puzzles,puzzlesAnswer)))
-print("manhattan: " + str(manhattan(puzzles,puzzlesAnswer)))
-print("==================================")
-print(puzzles)
-print(aStar(puzzles,puzzlesAnswer,manhattan(puzzles, puzzlesAnswer)))
+# fileName = "4x4_07_00001"
+# puzzlesAnswer = puzzlesAnswer4x4
+# puzzles = loadPuzzles(fileName)
+# print("hamming: " + str(hamming(puzzles,puzzlesAnswer)))
+# print("manhattan: " + str(manhattan(puzzles,puzzlesAnswer)))
+# print("==================================")
+# print(puzzles)
+# print(aStar(puzzles,puzzlesAnswer,manhattan(puzzles, puzzlesAnswer)))
 
 
 
 # program:
 
-# puzzlesAnswer = puzzlesAnswer4x4
-# fileName = "4x4_07_00001"
+puzzlesAnswer = puzzlesAnswer4x4
+fileName = "4x4_07_00002"
 # doDfs(fileName,puzzlesAnswer)
-# doBfs(fileName,puzzlesAnswer)
+doBfs(fileName,puzzlesAnswer)
+doFullAStar(fileName,puzzlesAnswer)
