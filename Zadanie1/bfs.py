@@ -18,7 +18,7 @@ import time
 '''
 
 
-def bfs(puzzles, puzzlesAnswer):
+def bfs(puzzles, puzzlesAnswer,permutaction):
 
     """
     inicjujemy potrzebne wartości:
@@ -34,7 +34,9 @@ def bfs(puzzles, puzzlesAnswer):
     last = None
     queue = Queue()
     pozX,pozY = setStart(puzzles)
-    possibilities = checkpossibilities(puzzles,pozX,pozY)
+    # possibilities = checkpossibilities(puzzles,pozX,pozY)
+    # possibilities = sortPossibilities(possibilities,permutaction)
+    possibilities = sortPossibilities(checkpossibilities(puzzles, pozX, pozY, last), permutaction)
     visited = ""
     statesVisited = 1
     """
@@ -44,8 +46,11 @@ def bfs(puzzles, puzzlesAnswer):
     """
 
     if checkPuzzles(puzzles, puzzlesAnswer) == True:
-        endTime = time.time()
-        return visited, statesVisited, endTime - startTime
+        print("\ttime: " + str(visited))
+        print("\tlength: " + str(len(visited)))
+        print("\ttime: " + str(time.time() - startTime))
+
+        return visited, statesVisited, time.time() - startTime
     for i in range(len(possibilities)):
         entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.copy(visited)]
         queue.enqueue(entry)
@@ -75,36 +80,39 @@ def bfs(puzzles, puzzlesAnswer):
         statesVisited = statesVisited + 1
         pozX, pozY = setStart(puzzles)
 
-        print("------------------")
-        print("wczytane wartości:")
-        print(puzzles)
-        print("ruch: " + str(wayToGo))
-        print("ścierzka: " + str(visited))
+        # print("------------------")
+        # print("wczytane wartości:")
+        # print(puzzles)
+        # print("ruch: " + str(wayToGo))
+        # print("ścierzka: " + str(visited))
 
         puzzles = switchPositions(wayToGo,pozX,pozY,puzzles)
         visited = str(visited) + wayToGo
 
         if checkPuzzles(puzzles, puzzlesAnswer) == True:
-            print(visited)
-            endTime = time.time()
-            return visited, statesVisited, endTime-startTime
+
+            print("\ttime: " + str(visited))
+            print("\tlength: " + str(len(visited)))
+            print("\ttime: " + str(time.time() - startTime))
+
+            return visited, statesVisited, time.time()-startTime
 
         pozX, pozY = setStart(puzzles)
-        possibilities = checkpossibilities(puzzles, pozX, pozY, last)
+        possibilities = sortPossibilities(checkpossibilities(puzzles, pozX, pozY, last), permutaction)
 
-        print("po zmianie: " + str(puzzles))
-        print("możliwości: " + str(possibilities))
-        print("last: " + str(last))
+        # print("po zmianie: " + str(puzzles))
+        # print("możliwości: " + str(possibilities))
+        # print("last: " + str(last))
 
         # last = wayToGo
         for i in range(len(possibilities)):
             entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]),copy.copy(visited)]
             queue.enqueue(entry)
 
-    endTime = time.time()
-    return -1,statesVisited, endTime-startTime
+    print("\tALERT: false")
+    return -1,statesVisited, time.time()-startTime
 
-def saveBfsAnswerInfo(fileName, visited, iter, time):
+def saveBfsAnswerInfo(fileName, visited, iter, time, permutaction):
     '''
 1 linia (liczba całkowita): długość znalezionego rozwiązania - o takiej samej wartości jak w pliku z rozwiązaniem (przy czym gdy program nie znalazł rozwiązania, wartość ta to -1);
 2 linia (liczba całkowita): liczbę stanów odwiedzonych;
@@ -113,7 +121,7 @@ def saveBfsAnswerInfo(fileName, visited, iter, time):
 5 linia (liczba rzeczywista z dokładnością do 3 miejsc po przecinku): czas trwania procesu obliczeniowego w milisekundach.
     '''
 
-    with open("./puzzlesAnswers/" + fileName + "_bfs_sol_info" + ".txt", "w") as file:
+    with open("./puzzlesAnswers/" + fileName + "_bfs_" + str(permutaction) + "_sol_info" + ".txt", "w") as file:
         if visited != -1:
             strings = [str(len(visited)), str(iter),str(iter),str(len(visited)),str(time)]
         else:
@@ -122,14 +130,14 @@ def saveBfsAnswerInfo(fileName, visited, iter, time):
         file.writelines([s + "\n" for s in strings])
     return 0
 
-def saveBfsAnswer(fileName, visited):
+def saveBfsAnswer(fileName, visited,permutaction):
 
     '''
     1 linia (liczba całkowita): długość roziwązania
     2 linia (permutacja roziwązania):
     '''
 
-    with open("./puzzlesAnswers/" +fileName + "_bfs_sol" + ".txt", "w") as file:
+    with open("./puzzlesAnswers/" +fileName + "_bfs_" + str(permutaction) + "_sol" + ".txt", "w") as file:
         if visited != -1:
             strings = [str(len(visited)), str(visited)]
             file.writelines([s + "\n" for s in strings])
@@ -137,9 +145,9 @@ def saveBfsAnswer(fileName, visited):
             file.writelines("-1")
     return 0
 
-def doBfs(fileName,puzzlesAnswer):
-    visited,iter,time = bfs(loadPuzzles(fileName),puzzlesAnswer)
+def doBfs(fileName,puzzlesAnswer,permutaction):
+    visited,iter,time = bfs(loadPuzzles(fileName),puzzlesAnswer,permutaction)
     time = round(time, 3)
-    saveBfsAnswer(fileName, visited)
-    saveBfsAnswerInfo(fileName, visited, iter, time)
+    saveBfsAnswer(fileName, visited,permutaction)
+    saveBfsAnswerInfo(fileName, visited, iter, time,permutaction)
     return 0

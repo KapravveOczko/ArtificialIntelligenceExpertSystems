@@ -116,3 +116,7 @@ def switchPositions(move,pozX,pozY,puzzles):
         puzzles[pozY][pozX + 1] = "0"
 
     return puzzles
+
+def sortPossibilities(possibilities, permutation):
+    order_dict = {c: i for i, c in enumerate(permutation)}
+    return sorted(possibilities, key=lambda x: order_dict[x])

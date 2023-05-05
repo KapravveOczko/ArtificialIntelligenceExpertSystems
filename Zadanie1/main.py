@@ -58,10 +58,40 @@ puzzlesAnswer4x4 = [['1','2','3','4'],['5','6','7','8'],['9','10','11','12'],['1
 # x,y = setStart(puzzles)
 # print(checkpossibilities(puzzles,x,y,"L"))
 
-# program:
+#test sort permutaction
 
 puzzlesAnswer = puzzlesAnswer4x4
-fileName = "4x4_07_00107"
+fileName = "4x4_07_00197"
+permutaction = ["RDUL","RDLU","DRUL","DRLU","LUDR","LURD","ULDR","ULRD"]
+
+for i in range(len(permutaction)):
+    print("===============================")
+    print("\t\t+------+")
+    print( "\t\t| " + str(permutaction[i]) + " |")
+    print("\t\t+------+")
+    print()
+    print("BFS:")
+    doBfs(fileName,puzzlesAnswer,permutaction[i])
+    print()
+    print("DFS:")
+    doDfs(fileName, puzzlesAnswer,permutaction[i])
+
+print("\t\t+------+")
+print( "\t\t| " + "ASTR" + " |")
+print("\t\t+------+")
+print()
+print("HAMM:")
+doAStar(fileName, puzzlesAnswer, "hamm")
+print()
+print("MANH:")
+doAStar(fileName, puzzlesAnswer, "manh")
+
+
+# program:
+
+# puzzlesAnswer = puzzlesAnswer4x4
+# fileName = "4x4_07_00107"
+# permutaction = "ULRD"
 # doDfs(fileName,puzzlesAnswer)
 # doBfs(fileName,puzzlesAnswer)
-doFullAStar(fileName,puzzlesAnswer)
+# doFullAStar(fileName,puzzlesAnswer)

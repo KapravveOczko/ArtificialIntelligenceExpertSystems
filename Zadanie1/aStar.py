@@ -52,6 +52,9 @@ def aStar(puzzles, puzzlesAnswer, metrics):
     path = ""
 
     if checkPuzzles(puzzles, puzzlesAnswer):
+        print("\ttime: " + str(path))
+        print("\tlength: " + str(len(path)))
+        print("\ttime: " + str(time.time() - startTime))
         return path, statesVisited, maxDepth + 1, time.time() - startTime
 
     for i in range(len(possibilities)):
@@ -70,23 +73,24 @@ def aStar(puzzles, puzzlesAnswer, metrics):
 
         pozX, pozY = setStart(puzzles)
 
-        print("------------------")
-        print("wczytane wartości:")
-        print(puzzles)
-        print("ruch: " + str(wayToGo))
-        print("odwiedzone" + str(visited))
+        # print("------------------")
+        # print("wczytane wartości:")
+        # print(puzzles)
+        # print("ruch: " + str(wayToGo))
+        # print("odwiedzone" + str(visited))
 
         puzzles = switchPositions(wayToGo, pozX, pozY, puzzles)
 
         if str(puzzles) in visited:
             continue
+        path = str(path) + wayToGo
 
         if checkPuzzles(puzzles, puzzlesAnswer):
-            print("ścieżka: " + str(path))
-            print("po zmianie: " + str(puzzles))
+            print("\ttime: " + str(path))
+            print("\tlength: " + str(len(path)))
+            print("\ttime: " + str(time.time() - startTime))
             return path, statesVisited, maxDepth + 1, time.time() - startTime
 
-        path = str(path) + wayToGo
         cost = metrics
         pozX, pozY = setStart(puzzles)
         possibilities = checkpossibilities(puzzles, pozX, pozY)
@@ -94,10 +98,10 @@ def aStar(puzzles, puzzlesAnswer, metrics):
         if len(path) > maxDepth:
             maxDepth = len(path)
 
-        print("ścieżka: " + str(path))
-        print("koszt: " + str(cost))
-        print("po zmianie: " + str(puzzles))
-        print("możliwości: " + str(possibilities))
+        # print("ścieżka: " + str(path))
+        # print("koszt: " + str(cost))
+        # print("po zmianie: " + str(puzzles))
+        # print("możliwości: " + str(possibilities))
 
         visited.add(str(puzzles))
 
@@ -106,6 +110,7 @@ def aStar(puzzles, puzzlesAnswer, metrics):
             queueOpen.enqueue(entry)
         queueOpen.items.sort(key=lambda x: x[3])
 
+    print("\tALERT: false")
     return -1,statesVisited, maxDepth + 1, time.time() - startTime
 
 def hamming(puzzles, puzzlesAnswer):
@@ -192,9 +197,9 @@ def doAStar(fileName,puzzlesAnswer,metrics):
         for j in range(len(puzzlesAnswer[0])):
             positionDict[int(puzzlesAnswer[i][j])] = (i, j)
 
-    if metrics == "hmm":
+    if metrics == "hamm":
         path, statesVisited, maxDepth, time = aStar(puzzles, puzzlesAnswer, hamming(puzzles, puzzlesAnswer))
-    elif metrics == "man":
+    elif metrics == "manh":
         path, statesVisited, maxDepth, time = aStar(loadPuzzles(fileName), puzzlesAnswer, manhattan(puzzles, puzzlesAnswer,positionDict))
     time = round(time, 3)
     saveAStarAnswer(fileName, path,metrics)
@@ -202,6 +207,6 @@ def doAStar(fileName,puzzlesAnswer,metrics):
     return 0
 
 def doFullAStar(fileName,puzzlesAnswer):
-    doAStar(fileName,puzzlesAnswer,"hmm")
-    doAStar(fileName,puzzlesAnswer,"man")
+    doAStar(fileName,puzzlesAnswer,"hamm")
+    doAStar(fileName,puzzlesAnswer,"manh")
     return 0

@@ -13,7 +13,7 @@ kolejka stanów odwiedzonych
     
 '''
 
-def dfs(puzzles, puzzlesAnswer):
+def dfs(puzzles, puzzlesAnswer,permutaction):
 
     """
     inicjujemy potrzebne wartości:
@@ -31,7 +31,7 @@ def dfs(puzzles, puzzlesAnswer):
     startTime = time.time()
     stack = Stack()
     pozX, pozY = setStart(puzzles)
-    possibilities = checkpossibilities(puzzles, pozX, pozY)
+    possibilities = sortPossibilities(checkpossibilities(puzzles, pozX, pozY), permutaction)
     visited = set()
     visited.add(str(puzzles))
     path = ''
@@ -45,6 +45,11 @@ def dfs(puzzles, puzzlesAnswer):
     """
 
     if checkPuzzles(puzzles, puzzlesAnswer):
+
+        print("\ttime: " + str(path))
+        print("\tlength: " + str(len(path)))
+        print("\ttime: " + str(time.time() - startTime))
+
         return path, statesVisited, maxDepth + 1, time.time() - startTime
     for i in range(len(possibilities)):
         entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.deepcopy(visited), copy.copy(path)]
@@ -81,37 +86,42 @@ def dfs(puzzles, puzzlesAnswer):
         if len(path) > maxDepth:
             maxDepth = len(path)
 
-        print("------------------")
-        print("wczytane wartości:")
-        print(puzzles)
-        print("ruch: " + str(wayToGo))
-        print("odwiedzone" + str(visited))
-        print("ścierzka: " +  str(path))
+        # print("------------------")
+        # print("wczytane wartości:")
+        # print(puzzles)
+        # print("ruch: " + str(wayToGo))
+        # print("odwiedzone" + str(visited))
+        # print("ścierzka: " +  str(path))
 
         puzzles = switchPositions(wayToGo, pozX, pozY, puzzles)
         if str(puzzles) in visited:
             continue
         if checkPuzzles(puzzles, puzzlesAnswer):
+
+            print("\ttime: " + str(path))
+            print("\tlength: " + str(len(path)))
+            print("\ttime: " + str(time.time() - startTime))
+
             return path, statesVisited,  maxDepth + 1, time.time() - startTime
 
         pozX, pozY = setStart(puzzles)
         visited.add(str(puzzles))
-        possibilities = checkpossibilities(puzzles, pozX, pozY)
+        possibilities = sortPossibilities(checkpossibilities(puzzles, pozX, pozY), permutaction)
         if len(visited) == 20:
             continue
 
-        print("po zmianie: " + str(puzzles))
-        print("możliwości: " + str(possibilities))
+        # print("po zmianie: " + str(puzzles))
+        # print("możliwości: " + str(possibilities))
 
         for i in range(len(possibilities)):
             entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.deepcopy(visited), copy.copy(path)]
             stack.push(entry)
 
-
+    print("\tALERT: false")
     return -1, statesVisited, maxDepth + 1, time.time() - startTime
 
 
-def saveDfsAnswerInfo(fileName, path, statesVisited,maxDepth, time):
+def saveDfsAnswerInfo(fileName, path, statesVisited,maxDepth, time,permutaction):
     '''
 1 linia (liczba całkowita): długość znalezionego rozwiązania - o takiej samej wartości jak w pliku z rozwiązaniem (przy czym gdy program nie znalazł rozwiązania, wartość ta to -1);
 2 linia (liczba całkowita): liczbę stanów odwiedzonych;
@@ -120,7 +130,7 @@ def saveDfsAnswerInfo(fileName, path, statesVisited,maxDepth, time):
 5 linia (liczba rzeczywista z dokładnością do 3 miejsc po przecinku): czas trwania procesu obliczeniowego w milisekundach.
     '''
 
-    with open("./puzzlesAnswers/" + fileName + "_dfs_sol_info" + ".txt", "w") as file:
+    with open("./puzzlesAnswers/" + fileName + "_dfs_" + str(permutaction) + "_sol_info" + ".txt", "w") as file:
         if path != -1:
             strings = [str(len(path)), str(statesVisited), str(statesVisited), str(maxDepth), str(time)]
         else:
@@ -129,23 +139,23 @@ def saveDfsAnswerInfo(fileName, path, statesVisited,maxDepth, time):
         file.writelines([s + "\n" for s in strings])
     return 0
 
-def saveDfsAnswer(fileName, path):
+def saveDfsAnswer(fileName, path,permutaction):
 
     '''
     1 linia (liczba całkowita): długość roziwązania
     2 linia (permutacja roziwązania):
     '''
 
-    with open("./puzzlesAnswers/" +fileName + "_dfs_sol" + ".txt", "w") as file:
+    with open("./puzzlesAnswers/" +fileName + "_dfs_" + str(permutaction) + "_sol" + ".txt", "w") as file:
         if path != -1:
             strings = [str(len(path)), str(path)]
             file.writelines([s + "\n" for s in strings])
         else:
             file.writelines("-1")
     return 0
-def doDfs(fileName,puzzlesAnswer):
-    path, statesVisited, maxDepth, time = dfs(loadPuzzles(fileName),puzzlesAnswer)
+def doDfs(fileName,puzzlesAnswer,permutaction):
+    path, statesVisited, maxDepth, time = dfs(loadPuzzles(fileName),puzzlesAnswer,permutaction)
     time = round(time, 3)
-    saveDfsAnswer(fileName, path)
-    saveDfsAnswerInfo(fileName, path, statesVisited,maxDepth, time)
+    saveDfsAnswer(fileName, path,permutaction)
+    saveDfsAnswerInfo(fileName, path, statesVisited,maxDepth, time,permutaction)
     return 0
