@@ -61,7 +61,7 @@ puzzlesAnswer4x4 = [['1','2','3','4'],['5','6','7','8'],['9','10','11','12'],['1
 # program:
 
 puzzlesAnswer = puzzlesAnswer4x4
-fileName = "4x4_07_00007"
+fileName = "4x4_07_00107"
 # doDfs(fileName,puzzlesAnswer)
-doBfs(fileName,puzzlesAnswer)
-# doFullAStar(fileName,puzzlesAnswer)
+# doBfs(fileName,puzzlesAnswer)
+doFullAStar(fileName,puzzlesAnswer)

@@ -5,18 +5,19 @@ pytania bez większej odpowiedzi:
     2 linia (liczba całkowita): liczbę stanów odwiedzonych;
     3 linia (liczba całkowita): liczbę stanów przetworzonych;
 
-#2: czy należy dodawać do tych 2 powyższych stan początkowy?
+#2: głębokość 1 dla stanu początkowego?
 
-    na razie tak jest że dodajemy początkowy
+    nope, to jest 0
 
 #3: czy możliwe jest aby nie uzyskać wyniku?
 
-#4: czy da się zoptymalizować działanie?
-
-    lista visited dla A* i dfs
-
-#5: dlaczego visited psuje A*?
+    tylko i wyłącznie dla dfs
+    minimalizacja % szansy na to przez zabawę stanem odwiedzonym
 
 TO DO:
 
 #1 sprawdzić czy głębokość, odwiedzone stany itd liczone są dla kazdego algotymu tak samo
+
+#2 przyśpieszyć A*
+
+#3 dodać permutację

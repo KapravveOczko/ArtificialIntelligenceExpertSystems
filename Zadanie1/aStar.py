@@ -38,15 +38,14 @@ Jeśli otwarta lista węzłów jest pusta, zwróć brak ścieżki.
 Powtórz kroki 3-4 aż do znalezienia celu lub osiągnięcia maksymalnej wartości f_max.
 '''
 
-def aStar(puzzles, puzzlesAnswer,metrics):
 
+def aStar(puzzles, puzzlesAnswer, metrics):
     startTime = time.time()
-
     statesVisited = 0
     maxDepth = 0
     queueOpen = Queue()
-    visited = []
-    visited.append(copy.deepcopy(puzzles))
+    visited = set()
+    visited.add(str(puzzles))
     cost = metrics
     pozX, pozY = setStart(puzzles)
     possibilities = checkpossibilities(puzzles, pozX, pozY)
@@ -54,20 +53,20 @@ def aStar(puzzles, puzzlesAnswer,metrics):
 
     if checkPuzzles(puzzles, puzzlesAnswer):
         return path, statesVisited, maxDepth + 1, time.time() - startTime
+
     for i in range(len(possibilities)):
-        entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.copy(path), copy.copy(cost), copy.copy(visited)]
+        entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.copy(path), copy.copy(cost)]
         queueOpen.enqueue(entry)
 
-    queueOpen.items.sort(key=lambda x: x[4])
+    queueOpen.items.sort(key=lambda x: x[3])
 
-    while queueOpen.isEmpty != True:
+    while queueOpen.isEmpty() != True:
 
         entry = queueOpen.dequeue()
         puzzles = entry[0]
         wayToGo = entry[1]
         path = entry[2]
-        #cost = entry[3]
-        visited = entry[4]
+        cost = entry[3]
 
         pozX, pozY = setStart(puzzles)
 
@@ -78,12 +77,14 @@ def aStar(puzzles, puzzlesAnswer,metrics):
         print("odwiedzone" + str(visited))
 
         puzzles = switchPositions(wayToGo, pozX, pozY, puzzles)
-        if puzzles in visited:
+
+        if str(puzzles) in visited:
             continue
+
         if checkPuzzles(puzzles, puzzlesAnswer):
-            print("ścierzka: " + str(path))
+            print("ścieżka: " + str(path))
             print("po zmianie: " + str(puzzles))
-            return path, statesVisited,  maxDepth + 1, time.time() - startTime
+            return path, statesVisited, maxDepth + 1, time.time() - startTime
 
         path = str(path) + wayToGo
         cost = metrics
@@ -93,21 +94,19 @@ def aStar(puzzles, puzzlesAnswer,metrics):
         if len(path) > maxDepth:
             maxDepth = len(path)
 
-        print("ścierzka: " + str(path))
-        print("koszt: "+ str(cost))
+        print("ścieżka: " + str(path))
+        print("koszt: " + str(cost))
         print("po zmianie: " + str(puzzles))
         print("możliwości: " + str(possibilities))
 
-        # visited.append(copy.deepcopy(puzzles))
-        #dodanie tej linijki wszystko psuje
+        visited.add(str(puzzles))
 
         for i in range(len(possibilities)):
-            entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.copy(path),copy.copy(cost), copy.copy(visited)]
+            entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.copy(path), copy.copy(cost)]
             queueOpen.enqueue(entry)
-        queueOpen.items.sort(key=lambda x: x[4])
+        queueOpen.items.sort(key=lambda x: x[3])
 
-
-    return -1
+    return -1,statesVisited, maxDepth + 1, time.time() - startTime
 
 def hamming(puzzles, puzzlesAnswer):
     cost = 0
@@ -119,21 +118,33 @@ def hamming(puzzles, puzzlesAnswer):
 
     return cost
 
-def manhattan(puzzles, puzzlesAnswer):
-    cost = 0
-    puzzlesX,puzzlesY,puzzlesAnswerX,puzzlesAnswerY = 0,0,0,0
+# def manhattan(puzzles, puzzlesAnswer):
+#     cost = 0
+#     puzzlesX,puzzlesY,puzzlesAnswerX,puzzlesAnswerY = 0,0,0,0
+#
+#     for a in range(len(puzzles)* len(puzzles[0])):
+#         for i in range(len(puzzles)):
+#             for j in range(len(puzzles[0])):
+#                 if puzzles[i][j] == str(a):
+#                     puzzlesX = j
+#                     puzzlesY = i
+#                 if puzzlesAnswer[i][j] == str(a):
+#                     puzzlesAnswerX = j
+#                     puzzlesAnswerY = i
+#         cost = cost + abs(puzzlesX - puzzlesAnswerX) + abs(puzzlesY - puzzlesAnswerY)
+#         # print("a: " + str(a) + " cost: " + str(cost))
+#
+#     return cost
 
-    for a in range(len(puzzles)* len(puzzles[0])):
-        for i in range(len(puzzles)):
-            for j in range(len(puzzles[0])):
-                if puzzles[i][j] == str(a):
-                    puzzlesX = j
-                    puzzlesY = i
-                if puzzlesAnswer[i][j] == str(a):
-                    puzzlesAnswerX = j
-                    puzzlesAnswerY = i
-        cost = cost + abs(puzzlesX - puzzlesAnswerX) + abs(puzzlesY - puzzlesAnswerY)
-        # print("a: " + str(a) + " cost: " + str(cost))
+def manhattan(puzzles, puzzlesAnswer, positionDict):
+    cost = 0
+
+    for i in range(len(puzzles)):
+        for j in range(len(puzzles[0])):
+            value = int(puzzles[i][j])
+            if value != 0:
+                correct_x, correct_y = positionDict[value]
+                cost += abs(i - correct_x) + abs(j - correct_y)
 
     return cost
 
@@ -173,12 +184,18 @@ def saveAStarAnswer(fileName, path , metrics):
 
 def doAStar(fileName,puzzlesAnswer,metrics):
     puzzles = loadPuzzles(fileName)
+    positionDict = {}
     time = 0.00
     path = ""
+
+    for i in range(len(puzzlesAnswer)):
+        for j in range(len(puzzlesAnswer[0])):
+            positionDict[int(puzzlesAnswer[i][j])] = (i, j)
+
     if metrics == "hmm":
         path, statesVisited, maxDepth, time = aStar(puzzles, puzzlesAnswer, hamming(puzzles, puzzlesAnswer))
     elif metrics == "man":
-        path, statesVisited, maxDepth, time = aStar(loadPuzzles(fileName), puzzlesAnswer, manhattan(puzzles, puzzlesAnswer))
+        path, statesVisited, maxDepth, time = aStar(loadPuzzles(fileName), puzzlesAnswer, manhattan(puzzles, puzzlesAnswer,positionDict))
     time = round(time, 3)
     saveAStarAnswer(fileName, path,metrics)
     saveAStarAnswerInfo(fileName, path, statesVisited,maxDepth, time,metrics)

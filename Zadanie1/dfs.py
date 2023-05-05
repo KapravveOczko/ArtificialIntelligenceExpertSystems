@@ -32,8 +32,8 @@ def dfs(puzzles, puzzlesAnswer):
     stack = Stack()
     pozX, pozY = setStart(puzzles)
     possibilities = checkpossibilities(puzzles, pozX, pozY)
-    visited = []
-    visited.append(copy.deepcopy(puzzles))
+    visited = set()
+    visited.add(str(puzzles))
     path = ''
     statesVisited = 0
     maxDepth = 0 #trzeba dodać 1 na końcu bo stan początkowy
@@ -66,7 +66,6 @@ def dfs(puzzles, puzzlesAnswer):
        wypełniamy stos możliwymi ruchami
 
        """
-    test = 0
 
     while not stack.is_empty():
         entry = stack.pop()
@@ -90,17 +89,16 @@ def dfs(puzzles, puzzlesAnswer):
         print("ścierzka: " +  str(path))
 
         puzzles = switchPositions(wayToGo, pozX, pozY, puzzles)
-        if puzzles in visited:
+        if str(puzzles) in visited:
             continue
         if checkPuzzles(puzzles, puzzlesAnswer):
             return path, statesVisited,  maxDepth + 1, time.time() - startTime
 
         pozX, pozY = setStart(puzzles)
-        visited.append(copy.deepcopy(puzzles))
+        visited.add(str(puzzles))
         possibilities = checkpossibilities(puzzles, pozX, pozY)
-        if len(visited) == 15:
+        if len(visited) == 20:
             continue
-
 
         print("po zmianie: " + str(puzzles))
         print("możliwości: " + str(possibilities))

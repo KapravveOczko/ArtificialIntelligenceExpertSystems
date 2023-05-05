@@ -101,9 +101,6 @@ def bfs(puzzles, puzzlesAnswer):
             entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]),copy.copy(visited)]
             queue.enqueue(entry)
 
-        # if len(visited) == 7:
-        #     break
-
     endTime = time.time()
     return -1,statesVisited, endTime-startTime
 
