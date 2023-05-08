@@ -105,9 +105,10 @@ def dfs(puzzles, puzzlesAnswer,permutaction):
 
             return path, statesVisited,  maxDepth, time.time() - startTime
 
+        last = wayToGo
         pozX, pozY = setStart(puzzles)
         visited.add(str(puzzles))
-        possibilities = sortPossibilities(checkpossibilities(puzzles, pozX, pozY), permutaction)
+        possibilities = sortPossibilities(checkpossibilities(puzzles, pozX, pozY,last), permutaction)
         if len(visited) == 20:
             continue
 

@@ -18,6 +18,18 @@ TO DO:
 
 #1 sprawdzić czy głębokość, odwiedzone stany itd liczone są dla kazdego algotymu tak samo
 
-#2 przyśpieszyć A*
+#2 DFS się jebie
 
-#3 dodać permutację
+    stany odwiedzone? nope, raczej nie to
+    dodanie last? powinno siępokryć z odwiedzonymi ale nie wiem na ten momęt
+    słaby stos? do tej pory było git
+
+#3  automatyczne zliczanie tego wszystkiego
+
+#4  sprawko
+
+#5 wyowłanie z lini poleceń
+
+    ma przekazywać to samo co w przykładzie?
+        #5.1 refaktoring funkcji do zapisu
+

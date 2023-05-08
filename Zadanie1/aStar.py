@@ -39,14 +39,21 @@ Powtórz kroki 3-4 aż do znalezienia celu lub osiągnięcia maksymalnej wartoś
 '''
 
 
-def aStar(puzzles, puzzlesAnswer, metrics):
+def aStar(puzzles, puzzlesAnswer, metrics, positionDict):
     startTime = time.time()
     statesVisited = 0
     maxDepth = 0
     queueOpen = Queue()
     visited = set()
     visited.add(str(puzzles))
-    cost = metrics
+
+    #brzydko, ale brak lepszego pomysłu przy zachowanym DRY
+
+    if metrics == "manh":
+        cost = manhattan(puzzles,puzzlesAnswer,positionDict)
+    else:
+        cost = hamming(puzzles,puzzlesAnswer)
+
     pozX, pozY = setStart(puzzles)
     possibilities = checkpossibilities(puzzles, pozX, pozY)
     path = ""
@@ -94,7 +101,10 @@ def aStar(puzzles, puzzlesAnswer, metrics):
             #przetworzone = visited + dlugosc kolejki
             return path, statesVisited, maxDepth, time.time() - startTime
 
-        cost = hamming(puzzles,puzzlesAnswer)
+        if metrics == "manh":
+            cost = manhattan(puzzles, puzzlesAnswer, positionDict)
+        else:
+            cost = hamming(puzzles, puzzlesAnswer)
         #przy tym koszcie jest błąd
         print(cost)
         pozX, pozY = setStart(puzzles)
@@ -175,24 +185,17 @@ def saveAStarAnswer(fileName, path , metrics):
     return 0
 
 def doAStar(fileName,puzzlesAnswer,metrics):
-    puzzles = loadPuzzles(fileName)
-    positionDict = {}
-    time = 0.00
-    path = ""
-    statesVisited = 0
-    maxDepth = 0
 
+    positionDict = {}
     for i in range(len(puzzlesAnswer)):
         for j in range(len(puzzlesAnswer[0])):
             positionDict[int(puzzlesAnswer[i][j])] = (i, j)
 
-    if metrics == "hamm":
-        path, statesVisited, maxDepth, time = aStar(puzzles, puzzlesAnswer, hamming(puzzles, puzzlesAnswer))
-    elif metrics == "manh":
-        path, statesVisited, maxDepth, time = aStar(loadPuzzles(fileName), puzzlesAnswer, manhattan(puzzles, puzzlesAnswer,positionDict))
+    path, statesVisited, maxDepth, time = aStar(loadPuzzles(fileName), puzzlesAnswer,metrics,positionDict)
     time = round(time, 3)
     saveAStarAnswer(fileName, path,metrics)
     saveAStarAnswerInfo(fileName, path, statesVisited,maxDepth, time,metrics)
+
     return 0
 
 def doFullAStar(fileName,puzzlesAnswer):
