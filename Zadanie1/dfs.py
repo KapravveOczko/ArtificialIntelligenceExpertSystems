@@ -36,7 +36,7 @@ def dfs(puzzles, puzzlesAnswer,permutaction):
     visited.add(str(puzzles))
     path = ''
     statesVisited = 0
-    maxDepth = 0 #trzeba dodać 1 na końcu bo stan początkowy
+    maxDepth = 0
 
     """
     sprawdzamy czy stan początkowy to stan poszukiwany
@@ -95,6 +95,7 @@ def dfs(puzzles, puzzlesAnswer,permutaction):
 
         puzzles = switchPositions(wayToGo, pozX, pozY, puzzles)
         if str(puzzles) in visited:
+            # print(visited)
             continue
         if checkPuzzles(puzzles, puzzlesAnswer):
 
@@ -102,7 +103,7 @@ def dfs(puzzles, puzzlesAnswer,permutaction):
             print("\tlength: " + str(len(path)))
             print("\ttime: " + str(time.time() - startTime))
 
-            return path, statesVisited,  maxDepth + 1, time.time() - startTime
+            return path, statesVisited,  maxDepth, time.time() - startTime
 
         pozX, pozY = setStart(puzzles)
         visited.add(str(puzzles))
@@ -117,8 +118,7 @@ def dfs(puzzles, puzzlesAnswer,permutaction):
             entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.deepcopy(visited), copy.copy(path)]
             stack.push(entry)
 
-    print("\tALERT: false")
-    return -1, statesVisited, maxDepth + 1, time.time() - startTime
+    return -1, statesVisited, maxDepth, time.time() - startTime
 
 
 def saveDfsAnswerInfo(fileName, path, statesVisited,maxDepth, time,permutaction):

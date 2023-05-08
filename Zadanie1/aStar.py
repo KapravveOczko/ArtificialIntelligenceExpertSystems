@@ -65,6 +65,7 @@ def aStar(puzzles, puzzlesAnswer, metrics):
 
     while queueOpen.isEmpty() != True:
 
+        queueOpen.items.sort(key=lambda x: x[3])
         entry = queueOpen.dequeue()
         puzzles = entry[0]
         wayToGo = entry[1]
@@ -89,9 +90,13 @@ def aStar(puzzles, puzzlesAnswer, metrics):
             print("\ttime: " + str(path))
             print("\tlength: " + str(len(path)))
             print("\ttime: " + str(time.time() - startTime))
-            return path, statesVisited, maxDepth + 1, time.time() - startTime
+            statesVisited = len(visited)
+            #przetworzone = visited + dlugosc kolejki
+            return path, statesVisited, maxDepth, time.time() - startTime
 
-        cost = metrics
+        cost = hamming(puzzles,puzzlesAnswer)
+        #przy tym koszcie jest błąd
+        print(cost)
         pozX, pozY = setStart(puzzles)
         possibilities = checkpossibilities(puzzles, pozX, pozY)
 
@@ -108,10 +113,10 @@ def aStar(puzzles, puzzlesAnswer, metrics):
         for i in range(len(possibilities)):
             entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.copy(path), copy.copy(cost)]
             queueOpen.enqueue(entry)
-        queueOpen.items.sort(key=lambda x: x[3])
+        # queueOpen.items.sort(key=lambda x: x[3])
 
     print("\tALERT: false")
-    return -1,statesVisited, maxDepth + 1, time.time() - startTime
+    return -1,statesVisited, maxDepth, time.time() - startTime
 
 def hamming(puzzles, puzzlesAnswer):
     cost = 0
@@ -122,24 +127,6 @@ def hamming(puzzles, puzzlesAnswer):
                 cost = cost+1
 
     return cost
-
-# def manhattan(puzzles, puzzlesAnswer):
-#     cost = 0
-#     puzzlesX,puzzlesY,puzzlesAnswerX,puzzlesAnswerY = 0,0,0,0
-#
-#     for a in range(len(puzzles)* len(puzzles[0])):
-#         for i in range(len(puzzles)):
-#             for j in range(len(puzzles[0])):
-#                 if puzzles[i][j] == str(a):
-#                     puzzlesX = j
-#                     puzzlesY = i
-#                 if puzzlesAnswer[i][j] == str(a):
-#                     puzzlesAnswerX = j
-#                     puzzlesAnswerY = i
-#         cost = cost + abs(puzzlesX - puzzlesAnswerX) + abs(puzzlesY - puzzlesAnswerY)
-#         # print("a: " + str(a) + " cost: " + str(cost))
-#
-#     return cost
 
 def manhattan(puzzles, puzzlesAnswer, positionDict):
     cost = 0
@@ -192,6 +179,8 @@ def doAStar(fileName,puzzlesAnswer,metrics):
     positionDict = {}
     time = 0.00
     path = ""
+    statesVisited = 0
+    maxDepth = 0
 
     for i in range(len(puzzlesAnswer)):
         for j in range(len(puzzlesAnswer[0])):
