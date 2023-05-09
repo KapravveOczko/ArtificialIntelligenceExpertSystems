@@ -106,8 +106,7 @@ def aStar(puzzles, puzzlesAnswer, metrics, positionDict):
             cost = manhattan(puzzles, positionDict)
         else:
             cost = hamming(puzzles, puzzlesAnswer)
-        #przy tym koszcie jest błąd
-        print(cost)
+
         pozX, pozY = setStart(puzzles)
         possibilities = checkpossibilities(puzzles, pozX, pozY)
 
@@ -126,7 +125,6 @@ def aStar(puzzles, puzzlesAnswer, metrics, positionDict):
             queue.enqueue(entry)
         # queue.items.sort(key=lambda x: x[3])
 
-    print("\tALERT: false")
     return -1, statesVisited + queue.size(),statesVisited, maxDepth + 1, time.time() - startTime
 
 def hamming(puzzles, puzzlesAnswer):
