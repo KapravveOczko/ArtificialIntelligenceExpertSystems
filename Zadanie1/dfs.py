@@ -3,16 +3,6 @@ from stack import *
 import copy
 import time
 
-'''
-kolejka stanów odwiedzonych
-
-    sprawdzamy stan
-    sprawdzamy możliwości poruszenia się z aktualnego stanu
-    dodajemy te stany do stosu (kolejka lifo)
-    dodajemy do nich tablice odwiedzonych stanów
-    
-'''
-
 def dfs(puzzles, puzzlesAnswer,permutaction):
 
     """
@@ -46,11 +36,11 @@ def dfs(puzzles, puzzlesAnswer,permutaction):
 
     if checkPuzzles(puzzles, puzzlesAnswer):
 
-        print("\ttime: " + str(path))
+        print("\tpath: " + str(path))
         print("\tlength: " + str(len(path)))
         print("\ttime: " + str(time.time() - startTime))
+        return path,statesVisited + stack.size(), statesVisited, maxDepth, time.time() - startTime
 
-        return path, statesVisited, maxDepth + 1, time.time() - startTime
     for i in range(len(possibilities)):
         entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.deepcopy(visited), copy.copy(path)]
         stack.push(entry)
@@ -102,8 +92,7 @@ def dfs(puzzles, puzzlesAnswer,permutaction):
             print("\ttime: " + str(path))
             print("\tlength: " + str(len(path)))
             print("\ttime: " + str(time.time() - startTime))
-
-            return path, statesVisited,  maxDepth, time.time() - startTime
+            return path,statesVisited + stack.size(), statesVisited, maxDepth, time.time() - startTime
 
         last = wayToGo
         pozX, pozY = setStart(puzzles)
@@ -119,10 +108,10 @@ def dfs(puzzles, puzzlesAnswer,permutaction):
             entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.deepcopy(visited), copy.copy(path)]
             stack.push(entry)
 
-    return -1, statesVisited, maxDepth, time.time() - startTime
+    return -1,statesVisited + stack.size(), statesVisited, maxDepth, time.time() - startTime
 
 
-def saveDfsAnswerInfo(fileName, path, statesVisited,maxDepth, time,permutaction):
+def saveDfsAnswerInfo(fileName, path, statesVisited,statesProcessed,maxDepth,time,permutaction):
     '''
 1 linia (liczba całkowita): długość znalezionego rozwiązania - o takiej samej wartości jak w pliku z rozwiązaniem (przy czym gdy program nie znalazł rozwiązania, wartość ta to -1);
 2 linia (liczba całkowita): liczbę stanów odwiedzonych;
@@ -133,9 +122,9 @@ def saveDfsAnswerInfo(fileName, path, statesVisited,maxDepth, time,permutaction)
 
     with open("./puzzlesAnswers/" + fileName + "_dfs_" + str(permutaction) + "_sol_info" + ".txt", "w") as file:
         if path != -1:
-            strings = [str(len(path)), str(statesVisited), str(statesVisited), str(maxDepth), str(time)]
+            strings = [str(len(path)), str(statesVisited), str(statesProcessed), str(maxDepth), str(time)]
         else:
-            strings = ["-1", ]
+            strings = ["-1", str(statesVisited), str(statesProcessed), str(maxDepth), str(time)]
 
         file.writelines([s + "\n" for s in strings])
     return 0
@@ -155,8 +144,8 @@ def saveDfsAnswer(fileName, path,permutaction):
             file.writelines("-1")
     return 0
 def doDfs(fileName,puzzlesAnswer,permutaction):
-    path, statesVisited, maxDepth, time = dfs(loadPuzzles(fileName),puzzlesAnswer,permutaction)
+    path, statesVisited,statesProcessed, maxDepth, time = dfs(loadPuzzles(fileName),puzzlesAnswer,permutaction)
     time = round(time, 3)
     saveDfsAnswer(fileName, path,permutaction)
-    saveDfsAnswerInfo(fileName, path, statesVisited,maxDepth, time,permutaction)
+    saveDfsAnswerInfo(fileName, path, statesVisited,statesProcessed,maxDepth, time,permutaction)
     return 0

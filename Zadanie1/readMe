@@ -14,6 +14,8 @@ pytania bez większej odpowiedzi:
     tylko i wyłącznie dla dfs
     minimalizacja % szansy na to przez zabawę stanem odwiedzonym
 
+#4 czy dla bfs wynik zawsze taki sam?
+
 TO DO:
 
 #1 sprawdzić czy głębokość, odwiedzone stany itd liczone są dla kazdego algotymu tak samo
@@ -33,3 +35,6 @@ TO DO:
     ma przekazywać to samo co w przykładzie?
         #5.1 refaktoring funkcji do zapisu
 
+#6 czy dla dfs liczyć te same stany dowiedzane czy nie?
+
+    statesVisited or visited.size()?

@@ -43,14 +43,15 @@ def aStar(puzzles, puzzlesAnswer, metrics, positionDict):
     startTime = time.time()
     statesVisited = 0
     maxDepth = 0
-    queueOpen = Queue()
+    queue = Queue()
     visited = set()
     visited.add(str(puzzles))
 
+    statesVisited = statesVisited + 1
     #brzydko, ale brak lepszego pomysłu przy zachowanym DRY
 
     if metrics == "manh":
-        cost = manhattan(puzzles,puzzlesAnswer,positionDict)
+        cost = manhattan(puzzles,positionDict)
     else:
         cost = hamming(puzzles,puzzlesAnswer)
 
@@ -62,18 +63,18 @@ def aStar(puzzles, puzzlesAnswer, metrics, positionDict):
         print("\ttime: " + str(path))
         print("\tlength: " + str(len(path)))
         print("\ttime: " + str(time.time() - startTime))
-        return path, statesVisited, maxDepth + 1, time.time() - startTime
+        return path, statesVisited + queue.size(),statesVisited, maxDepth + 1, time.time() - startTime
 
     for i in range(len(possibilities)):
         entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.copy(path), copy.copy(cost)]
-        queueOpen.enqueue(entry)
+        queue.enqueue(entry)
 
-    queueOpen.items.sort(key=lambda x: x[3])
+    queue.items.sort(key=lambda x: x[3])
 
-    while queueOpen.isEmpty() != True:
+    while queue.isEmpty() != True:
 
-        queueOpen.items.sort(key=lambda x: x[3])
-        entry = queueOpen.dequeue()
+        queue.items.sort(key=lambda x: x[3])
+        entry = queue.dequeue()
         puzzles = entry[0]
         wayToGo = entry[1]
         path = entry[2]
@@ -99,10 +100,10 @@ def aStar(puzzles, puzzlesAnswer, metrics, positionDict):
             print("\ttime: " + str(time.time() - startTime))
             statesVisited = len(visited)
             #przetworzone = visited + dlugosc kolejki
-            return path, statesVisited, maxDepth, time.time() - startTime
+            return path, statesVisited + queue.size(),statesVisited, maxDepth + 1, time.time() - startTime
 
         if metrics == "manh":
-            cost = manhattan(puzzles, puzzlesAnswer, positionDict)
+            cost = manhattan(puzzles, positionDict)
         else:
             cost = hamming(puzzles, puzzlesAnswer)
         #przy tym koszcie jest błąd
@@ -122,11 +123,11 @@ def aStar(puzzles, puzzlesAnswer, metrics, positionDict):
 
         for i in range(len(possibilities)):
             entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.copy(path), copy.copy(cost)]
-            queueOpen.enqueue(entry)
-        # queueOpen.items.sort(key=lambda x: x[3])
+            queue.enqueue(entry)
+        # queue.items.sort(key=lambda x: x[3])
 
     print("\tALERT: false")
-    return -1,statesVisited, maxDepth, time.time() - startTime
+    return -1, statesVisited + queue.size(),statesVisited, maxDepth + 1, time.time() - startTime
 
 def hamming(puzzles, puzzlesAnswer):
     cost = 0
@@ -138,7 +139,7 @@ def hamming(puzzles, puzzlesAnswer):
 
     return cost
 
-def manhattan(puzzles, puzzlesAnswer, positionDict):
+def manhattan(puzzles, positionDict):
     cost = 0
 
     for i in range(len(puzzles)):
@@ -150,8 +151,7 @@ def manhattan(puzzles, puzzlesAnswer, positionDict):
 
     return cost
 
-#do nazwy pliku trzeba dodać jaka metryka
-def saveAStarAnswerInfo(fileName, path, statesVisited,maxDepth, time, metrics):
+def saveAStarAnswerInfo(fileName, path, statesVisited,statesProcessed,maxDepth, time, metrics):
     '''
 1 linia (liczba całkowita): długość znalezionego rozwiązania - o takiej samej wartości jak w pliku z rozwiązaniem (przy czym gdy program nie znalazł rozwiązania, wartość ta to -1);
 2 linia (liczba całkowita): liczbę stanów odwiedzonych;
@@ -162,9 +162,9 @@ def saveAStarAnswerInfo(fileName, path, statesVisited,maxDepth, time, metrics):
 
     with open("./puzzlesAnswers/" + fileName + "_a" + metrics + "_sol_info" + ".txt", "w") as file:
         if path != -1:
-            strings = [str(len(path)), str(statesVisited), str(statesVisited), str(maxDepth), str(time)]
+            strings = [str(len(path)), str(statesVisited), str(statesProcessed), str(maxDepth), str(time)]
         else:
-            strings = ["-1", ]
+            strings = ["-1", str(statesVisited), str(statesProcessed), str(maxDepth), str(time)]
 
         file.writelines([s + "\n" for s in strings])
     return 0
@@ -191,10 +191,10 @@ def doAStar(fileName,puzzlesAnswer,metrics):
         for j in range(len(puzzlesAnswer[0])):
             positionDict[int(puzzlesAnswer[i][j])] = (i, j)
 
-    path, statesVisited, maxDepth, time = aStar(loadPuzzles(fileName), puzzlesAnswer,metrics,positionDict)
+    path, statesVisited,statesProcessed, maxDepth, time = aStar(loadPuzzles(fileName), puzzlesAnswer,metrics,positionDict)
     time = round(time, 3)
     saveAStarAnswer(fileName, path,metrics)
-    saveAStarAnswerInfo(fileName, path, statesVisited,maxDepth, time,metrics)
+    saveAStarAnswerInfo(fileName, path, statesVisited,statesProcessed, maxDepth, time,metrics)
 
     return 0
 
