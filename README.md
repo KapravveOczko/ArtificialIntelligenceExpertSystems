@@ -29,3 +29,43 @@ The goal of the programming part is to write a program that will solve the above
 --->The Manhattan metric  
 
 The aim of the research part is to investigate the behavior of the aforementioned state space search methods in the case of this problem.
+
+
+# +------------------+| zadanie2 = task2 |+------------------+
+
+# Task 1: Programming and Research - Neural Network for Error Correction
+
+## Programming Part
+
+**Requirements:**
+
+Design and implement a neural network that can correct errors obtained from a location measurement system.
+
+Design a neural network with the following specifications:
+- Select an appropriate type of network.
+- Determine the number of layers.
+- Decide on the number of neurons in each layer.
+- Choose activation functions for each layer.
+
+Implement the neural network using any programming language. Using external libraries for neural network development (such as PyTorch or TensorFlow) will be rewarded with a maximum score of 3.
+
+## Research Part
+
+**Requirements for Maximum Score 4:**
+
+Train the neural network to correct errors in the provided data using any learning method.
+
+Verify the quality of the developed neural network by comparing the error cumulative distribution functions (CDFs) for the test dataset with the ones obtained after filtering using the neural network.
+
+Prepare an XLS or XLSX file containing a single column with the CDF values obtained after filtering using the developed neural network.
+
+Create a report that includes:
+- A description of the neural network architecture, including:
+  - Type of network.
+  - Number of layers.
+  - Number of neurons in each layer.
+  - Activation functions used in each layer.
+  - Weight initialization method in each layer.
+  - Input data for the neural network.
+- Information about the neural network training method and a summary of the learning process parameters.
+- Comparison of the error CDFs for the test dataset with the ones obtained after filtering using the neural network.

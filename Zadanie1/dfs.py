@@ -101,8 +101,6 @@ def dfs(puzzles, puzzlesAnswer,permutaction):
         if len(visited) == 20:
             continue
 
-        # print("po zmianie: " + str(puzzles))
-        # print("możliwości: " + str(possibilities))
 
         for i in range(len(possibilities)):
             entry = [copy.deepcopy(puzzles), copy.copy(possibilities[i]), copy.deepcopy(visited), copy.copy(path)]

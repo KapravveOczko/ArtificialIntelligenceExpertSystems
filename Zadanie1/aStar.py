@@ -48,7 +48,6 @@ def aStar(puzzles, puzzlesAnswer, metrics, positionDict):
     visited.add(str(puzzles))
 
     statesVisited = statesVisited + 1
-    #brzydko, ale brak lepszego pomysłu przy zachowanym DRY
 
     if metrics == "manh":
         cost = manhattan(puzzles,positionDict)
@@ -99,7 +98,6 @@ def aStar(puzzles, puzzlesAnswer, metrics, positionDict):
             print("\tlength: " + str(len(path)))
             print("\ttime: " + str(time.time() - startTime))
             statesVisited = len(visited)
-            #przetworzone = visited + dlugosc kolejki
             return path, statesVisited + queue.size(),statesVisited, maxDepth + 1, time.time() - startTime
 
         if metrics == "manh":

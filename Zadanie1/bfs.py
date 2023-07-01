@@ -65,12 +65,6 @@ def bfs(puzzles, puzzlesAnswer,permutaction):
         statesVisited = statesVisited + 1
         pozX, pozY = setStart(puzzles)
 
-        # print("------------------")
-        # print("wczytane wartości:")
-        # print(puzzles)
-        # print("ruch: " + str(wayToGo))
-        # print("ścierzka: " + str(visited))
-
         puzzles = switchPositions(wayToGo,pozX,pozY,puzzles)
         path = str(path) + wayToGo
 
